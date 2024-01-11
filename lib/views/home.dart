@@ -9,7 +9,22 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+  final PageController _pageController = PageController();
+  late final TabController _tabsController;
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _tabsController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +53,28 @@ class _HomeState extends State<Home> {
                   ),
                   Expanded(
                     child: Row(
-                      children: <Widget>[],
+                      children: <Widget>[
+                        TabBar(
+                          indicatorColor: green,
+                          dividerHeight: 0,
+                          labelColor: green,
+                          controller: _tabsController,
+                          tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
+                        ),
+                      ],
                     ),
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Bootstrap.people, size: 20, color: white),
+                    icon: const Icon(Bootstrap.search, size: 20, color: white),
                   ),
                 ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabsController,
+                  children: <Widget>[],
+                ),
               ),
             ],
           ),
