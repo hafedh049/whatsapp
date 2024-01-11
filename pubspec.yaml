@@ -9,15 +9,17 @@ environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
+
   cloud_firestore: ^4.14.0
   concentric_transition: ^1.0.3
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   firebase_storage: ^11.6.0
   firebase_ui_firestore: ^1.6.1
-  flutter:
-    sdk: flutter
   flutter_animate: ^4.4.0
+  flutter_svg: ^2.0.9
   get: ^4.6.6
   hand_signature: ^3.0.2
   hive: ^2.2.3

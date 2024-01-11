@@ -37,7 +37,7 @@ class _ChatsState extends State<Chats> {
           ),
           const SizedBox(width: 10),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text("09 : 49", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
@@ -59,10 +59,10 @@ class _ChatsState extends State<Chats> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       itemBuilder: (BuildContext context, int index) => _choices[index % _choices.length],
       itemCount: _itemCount,
-      separatorBuilder: (BuildContext context, int index) => Divider(thickness: .5, color: white.withOpacity(.6)),
+      separatorBuilder: (BuildContext context, int index) => Container(margin: const EdgeInsets.symmetric(vertical: 16), height: .2, color: white.withOpacity(.6)),
     );
   }
 }

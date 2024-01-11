@@ -54,21 +54,26 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       icon: const Icon(Bootstrap.people, size: 20, color: white),
                     ),
                     Expanded(
-                      child: TabBar(
-                        indicatorColor: green,
-                        dividerHeight: 0,
-                        labelColor: green,
-                        controller: _tabsController,
-                        tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
+                      child: Stack(
+                        children: <Widget>[
+                          SvgPicture
+                          TabBar(
+                            indicatorColor: green,
+                            dividerHeight: 0,
+                            labelColor: green,
+                            controller: _tabsController,
+                            tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
+                          ),
+                        ],
                       ),
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Bootstrap.search, size: 20, color: white),
+                      icon: const Icon(Bootstrap.search, size: 18, color: white),
                     ),
                   ],
                 ),
-                Expanded(child: TabBarView(controller: _tabsController, children: <Widget>[for (int i = 0; i < 3; i++) const Expanded(child: Chats())])),
+                Expanded(child: TabBarView(controller: _tabsController, children: <Widget>[for (int i = 0; i < 3; i++) const Chats()])),
               ],
             ),
           ),
