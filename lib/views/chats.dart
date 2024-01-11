@@ -42,12 +42,12 @@ class _ChatsState extends State<Chats> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text("I know that's what I said!", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+              Text("09 : 49", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
               const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: green),
-                child: Text("2", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                child: Text("2", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
               ),
             ],
           ),
@@ -55,7 +55,9 @@ class _ChatsState extends State<Chats> {
       ),
     ),
   ];
+
   final int _itemCount = 20;
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(

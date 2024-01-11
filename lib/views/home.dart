@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
+import 'package:whatsapp/views/chats.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -73,7 +74,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               Expanded(
                 child: TabBarView(
                   controller: _tabsController,
-                  children: <Widget>[],
+                  children: const <Widget>[Chats(), Chats(), Chats()],
                 ),
               ),
             ],
