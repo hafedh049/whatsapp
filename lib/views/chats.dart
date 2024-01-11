@@ -12,13 +12,11 @@ class Chats extends StatefulWidget {
 class _ChatsState extends State<Chats> {
   final List<Widget> _choices = <Widget>[
     GestureDetector(
+      onDoubleTap: () {},
+      onTap: () {},
       child: Row(
         children: <Widget>[
-          Container(
-            width: 30,
-            height: 30,
-            decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me."), fit: BoxFit.cover)),
-          ),
+          Container(width: 30, height: 30, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
           const SizedBox(width: 10),
           Expanded(
             child: Column(

@@ -43,41 +43,38 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 30),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Bootstrap.people, size: 20, color: white),
-                  ),
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        TabBar(
-                          indicatorColor: green,
-                          dividerHeight: 0,
-                          labelColor: green,
-                          controller: _tabsController,
-                          tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
-                        ),
-                      ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Bootstrap.people, size: 20, color: white),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Bootstrap.search, size: 20, color: white),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabsController,
-                  children: const <Widget>[Chats(), Chats(), Chats()],
+                    Expanded(
+                      child: Row(
+                        children: <Widget>[
+                          TabBar(
+                            indicatorColor: green,
+                            dividerHeight: 0,
+                            labelColor: green,
+                            controller: _tabsController,
+                            tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Bootstrap.search, size: 20, color: white),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Expanded(child: TabBarView(controller: _tabsController, children: <Widget>[for (int i = 0; i < 3; i++) const Expanded(child: Chats())])),
+              ],
+            ),
           ),
         ],
       ),
