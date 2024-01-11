@@ -17,7 +17,7 @@ class BezierCurve extends StatelessWidget {
 class Bezier extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final Path path = Path()..addPath(path, offset);
+    // final Path path = Path()..addPath(path, offset);
   }
 
   @override
