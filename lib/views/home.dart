@@ -29,7 +29,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("WHATSAPP", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+        title: const Text("WHATSAPP", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: white)),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
