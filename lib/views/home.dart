@@ -54,16 +54,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       icon: const Icon(Bootstrap.people, size: 20, color: white),
                     ),
                     Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          TabBar(
-                            indicatorColor: green,
-                            dividerHeight: 0,
-                            labelColor: green,
-                            controller: _tabsController,
-                            tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
-                          ),
-                        ],
+                      child: TabBar(
+                        indicatorColor: green,
+                        dividerHeight: 0,
+                        labelColor: green,
+                        controller: _tabsController,
+                        tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
                       ),
                     ),
                     IconButton(

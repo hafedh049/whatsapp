@@ -16,7 +16,7 @@ class _ChatsState extends State<Chats> {
       onTap: () {},
       child: Row(
         children: <Widget>[
-          Container(width: 30, height: 30, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+          Container(width: 60, height: 60, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -27,7 +27,7 @@ class _ChatsState extends State<Chats> {
                 const SizedBox(height: 10),
                 Row(
                   children: <Widget>[
-                    const Icon(FontAwesome.check_double_solid, color: blue),
+                    const Icon(FontAwesome.check_double_solid, color: blue, size: 15),
                     const SizedBox(width: 5),
                     Text("I know that's what I said!", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
                   ],
