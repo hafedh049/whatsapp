@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
 import 'package:whatsapp/views/chats.dart';
@@ -54,17 +55,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       icon: const Icon(Bootstrap.people, size: 20, color: white),
                     ),
                     Expanded(
-                      child: Stack(
-                        children: <Widget>[
-                          SvgPicture
-                          TabBar(
-                            indicatorColor: green,
-                            dividerHeight: 0,
-                            labelColor: green,
-                            controller: _tabsController,
-                            tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
-                          ),
-                        ],
+                      child: TabBar(
+                        indicatorColor: green,
+                        overlayColor: null,
+                        dividerHeight: 0,
+                        labelColor: green,
+                        controller: _tabsController,
+                        tabs: const <Tab>[Tab(text: "Chats"), Tab(text: "Channels"), Tab(text: "Calls")],
                       ),
                     ),
                     IconButton(
