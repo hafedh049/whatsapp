@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp/utils/shared.dart';
 
-class RPSCustomPainter extends CustomPainter {
+class TanCurveClipper extends CustomClipper<Path> {
   @override
-  void paint(Canvas canvas, Size size) {
-    final Path path_0 = Path();
-    path_0.moveTo(0, size.height * 0.6983240);
-    path_0.lineTo(size.width * 0.3757737, size.height * 0.6983240);
-    path_0.quadraticBezierTo(size.width * 0.3978780, size.height * 0.6983240, size.width * 0.4067197, size.height * 1.047486);
-    path_0.lineTo(size.width * 0.4155615, size.height * 1.256983);
-    path_0.quadraticBezierTo(size.width * 0.4288240, size.height * 1.745810, size.width * 0.4995579, size.height * 1.675978);
-    path_0.lineTo(0, size.height * 1.675978);
-    path_0.lineTo(0, size.height * 0.6983240);
-    path_0.lineTo(size.width * -0.3757737, size.height * 0.6983240);
-    path_0.quadraticBezierTo(size.width * -0.3978780, size.height * 0.6983240, size.width * -0.4067197, size.height * 1.047486);
-    path_0.lineTo(size.width * -0.4155615, size.height * 1.256983);
-    path_0.quadraticBezierTo(size.width * -0.4288240, size.height * 1.745810, size.width * -0.4995579, size.height * 1.675978);
-    path_0.lineTo(0, size.height * 1.675978);
+  Path getClip(Size size) {
+    Path path = Path();
 
-    final Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.color = green;
-    canvas.drawPath(path_0, paint_0_fill);
+    // Move to the top-left corner
+    path.moveTo(0, 20);
+
+    // Bézier curve for the top-left corner
+    path.cubicTo(1 * size.width, 0.11 * size.height, 0.23 * size.width, 0.69 * size.height, 0.5 * size.width, 0);
+
+    // Line to the top-right corner
+    path.lineTo(size.width * 0.5, 0);
+
+    // Bézier curve for the top-right corner
+    path.cubicTo(0.77 * size.width, 0.69 * size.height, size.width - 0.23 * size.width, 0.11 * size.height, size.width, 20);
+
+    // Line to the bottom-right corner
+    path.lineTo(size.width, size.height);
+
+    // Line to the bottom-left corner
+    path.lineTo(0, size.height);
+
+    // Close the path
+    path.close();
+
+    return path;
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return true;
   }
 }
