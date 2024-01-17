@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
+import 'package:whatsapp/views/calls.dart';
 import 'package:whatsapp/views/chats.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +14,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
   late final TabController _tabsController;
-  final List<Widget> _tabs = <Widget>[];
+  final List<Widget> _tabs = <Widget>[const Chats(), const Chats(), const Chats(), const Calls()];
 
   @override
   void dispose() {
@@ -63,7 +64,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               Tab(text: "Calls"),
             ],
           ),
-          Expanded(child: TabBarView(controller: _tabsController, children: <Widget>[for (int i = 0; i < 4; i++) const Chats()])),
+          Expanded(child: TabBarView(controller: _tabsController, children: _tabs)),
         ],
       ),
     );
