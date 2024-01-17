@@ -53,8 +53,19 @@ class _UpdatesState extends State<Updates> {
           ),
           const SizedBox(height: 10),
           StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) _) => ListView.builder(
-              itemBuilder: (BuildContext context,int index) => ,
+            builder: (BuildContext context, void Function(void Function()) _) => ListView.separated(
+              itemCount: 20,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
+              itemBuilder: (BuildContext context, int index) => Container(
+                width: 50,
+                height: 50,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: green,
+                  image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 10),
