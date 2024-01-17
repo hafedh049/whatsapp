@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
 import 'package:whatsapp/views/calls.dart';
 import 'package:whatsapp/views/chats.dart';
+import 'package:whatsapp/views/updates.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
   late final TabController _tabsController;
-  final List<Widget> _tabs = <Widget>[const Chats(), const Chats(), const Chats(), const Calls()];
+  final List<Widget> _tabs = <Widget>[const Chats(), const Chats(), const Updates(), const Calls()];
 
   @override
   void dispose() {

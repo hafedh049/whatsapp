@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
 
 class Updates extends StatefulWidget {
@@ -16,23 +17,34 @@ class _UpdatesState extends State<Updates> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Text("Status", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+          GestureDetector(
+            onTap: () {},
+            child: const Row(
+              children: <Widget>[
+                Text("Status", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                Spacer(),
+                Text("See all", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: green)),
+                SizedBox(width: 5),
+                Icon(FontAwesome.chevron_right_solid, color: green, size: 13),
+              ],
+            ),
+          ),
           const SizedBox(height: 10),
           GestureDetector(
             onLongPress: () {},
             onTap: () {},
             child: Row(
               children: <Widget>[
-                Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, color: green), child: const Icon(FontAwesome.link_solid, size: 20, color: black)),
+                Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, color: green, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      const Text("Create call link", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      const Text("My status", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
                       const SizedBox(height: 5),
-                      Text("Share a link for your whatsapp call", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                      Text("Tap to add status update", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
                     ],
                   ),
                 ),
@@ -40,7 +52,22 @@ class _UpdatesState extends State<Updates> {
             ),
           ),
           const SizedBox(height: 10),
-          const Text("Recent", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+          StatefulBuilder(
+            builder: (BuildContext context, void Function(void Function()) _) => ListView.builder(
+              itemBuilder: (BuildContext context,int index) => ,
+            ),
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onTap: () {},
+            child: const Row(
+              children: <Widget>[
+                Text("Channels", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                Spacer(),
+                Icon(FontAwesome.plus_solid, color: white, size: 20),
+              ],
+            ),
+          ),
           const SizedBox(height: 10),
         ],
       ),
