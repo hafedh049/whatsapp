@@ -75,7 +75,7 @@ class _ChatsState extends State<Chats> {
                     const SizedBox(width: 20),
                     Text("Archived", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
                     const Spacer(),
-                    const Icon(Bootstrap.at, size: 20, color: green),
+                    const Icon(Bootstrap.at, size: 25, color: green),
                   ],
                 ),
               ),

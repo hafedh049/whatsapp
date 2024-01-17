@@ -60,7 +60,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             tabs: const <Tab>[
               Tab(icon: Icon(Bootstrap.people, size: 20, color: white)),
               Tab(text: "Chats"),
-              Tab(text: "Updates"),
+              Tab(text: "Updates ⦿"),
               Tab(text: "Calls"),
             ],
           ),

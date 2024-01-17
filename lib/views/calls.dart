@@ -56,7 +56,7 @@ class _CallsState extends State<Calls> {
                   onTap: () {},
                   child: Row(
                     children: <Widget>[
-                      Container(width: 60, height: 60, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+                      Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Column(
