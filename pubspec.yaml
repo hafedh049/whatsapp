@@ -23,6 +23,7 @@ dependencies:
   #hand_signature: ^3.0.2
   #hive: ^2.2.3
   icons_plus: ^5.0.0
+  date_format: ^2.0.7
   #lottie: ^3.0.0
 
 dev_dependencies:
