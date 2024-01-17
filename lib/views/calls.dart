@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
 
 class Calls extends StatefulWidget {
@@ -29,7 +30,7 @@ class _CallsState extends State<Calls> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      const Icon(FontAwesome., color: blue, size: 15),
+                      Icon(Random().nextBool() ? Icons.call_missed : Icons.call_end, color: Random().nextBool() ? green : Colors.red, size: 15),
                       const SizedBox(width: 5),
                       Text("I know that's what I said!", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
                     ],
