@@ -67,13 +67,15 @@ class _ChatsState extends State<Chats> {
             return GestureDetector(
               onTap: () {},
               child: Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(16),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     const Icon(Bootstrap.archive, size: 20, color: white),
                     const SizedBox(width: 20),
                     Text("Archived", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                    const Spacer(),
+                    const Icon(Bootstrap.at, size: 20, color: green),
                   ],
                 ),
               ),
