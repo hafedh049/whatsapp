@@ -52,19 +52,14 @@ class _UpdatesState extends State<Updates> {
             ),
           ),
           const SizedBox(height: 10),
-          StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) _) => ListView.separated(
-              itemCount: 20,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
-              itemBuilder: (BuildContext context, int index) => Container(
-                width: 50,
-                height: 50,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: green,
-                  image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover),
-                ),
+          SizedBox(
+            height: 40,
+            child: StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) => ListView.separated(
+                itemCount: 20,
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
+                itemBuilder: (BuildContext context, int index) => const CircleAvatar(radius: 30, backgroundColor: white, child: CircleAvatar(radius: 28, backgroundColor: white, backgroundImage: AssetImage("assets/images/me.jpg"))),
               ),
             ),
           ),
