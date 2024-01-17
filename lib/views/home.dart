@@ -62,22 +62,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               Tab(text: "Calls"),
             ],
           ),
-          StatefulBuilder(
-            key: null,
-            builder: (BuildContext context, void Function(void Function()) _) {
-              return GestureDetector(
-                onTap: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const Icon(Bootstrap.archive, size: 20, color: white),
-                    const SizedBox(width: 20),
-                    Text("I know that's what I said!", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
-                  ],
-                ),
-              );
-            },
-          ),
           Expanded(child: TabBarView(controller: _tabsController, children: <Widget>[for (int i = 0; i < 4; i++) const Chats()])),
         ],
       ),

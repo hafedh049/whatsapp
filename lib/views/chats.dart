@@ -58,11 +58,37 @@ class _ChatsState extends State<Chats> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(16),
-      itemBuilder: (BuildContext context, int index) => _choices[index % _choices.length],
-      itemCount: _itemCount,
-      separatorBuilder: (BuildContext context, int index) => Container(margin: const EdgeInsets.symmetric(vertical: 16), height: .2, color: white.withOpacity(.6)),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        StatefulBuilder(
+          key: null,
+          builder: (BuildContext context, void Function(void Function()) _) {
+            return GestureDetector(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const Icon(Bootstrap.archive, size: 20, color: white),
+                    const SizedBox(width: 20),
+                    Text("Archived", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+        Expanded(
+          child: ListView.separated(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            itemBuilder: (BuildContext context, int index) => _choices[index % _choices.length],
+            itemCount: _itemCount,
+            separatorBuilder: (BuildContext context, int index) => Container(margin: const EdgeInsets.symmetric(vertical: 16), height: .2, color: white.withOpacity(.6)),
+          ),
+        ),
+      ],
     );
   }
 }
