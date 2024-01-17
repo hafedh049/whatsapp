@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/utils/shared.dart';
 
 class Calls extends StatefulWidget {
   const Calls({super.key});
@@ -27,7 +29,7 @@ class _CallsState extends State<Calls> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      const Icon(FontAwesome.check_double_solid, color: blue, size: 15),
+                      const Icon(FontAwesome., color: blue, size: 15),
                       const SizedBox(width: 5),
                       Text("I know that's what I said!", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
                     ],
