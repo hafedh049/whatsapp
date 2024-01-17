@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp/utils/shared.dart';
 
@@ -14,6 +15,9 @@ class _CallsState extends State<Calls> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.zero,
+      shrinkWrap: true,
+      itemCount: 20,
       itemBuilder: (BuildContext context, int index) => GestureDetector(
         onLongPress: () {},
         onTap: () {},
@@ -26,32 +30,20 @@ class _CallsState extends State<Calls> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const Text("Steve Thomas", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                  const Text("Hafedh Guenichi", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
                       Icon(Random().nextBool() ? Icons.call_missed : Icons.call_end, color: Random().nextBool() ? green : Colors.red, size: 15),
                       const SizedBox(width: 5),
-                      Text("I know that's what I said!", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                      Text(formatDate(DateTime.now(), <String>[yyyy, '-', mm, '-', dd, " ", HH, ':', nn, ':', ss, " ", am]), style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
                     ],
                   ),
                 ],
               ),
             ),
             const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text("09 : 49", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
-                const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: green),
-                  child: Text("2", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
-                ),
-              ],
-            ),
+            const Icon(Icons.call, color: green, size: 15),
           ],
         ),
       ),

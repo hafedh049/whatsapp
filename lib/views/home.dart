@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
   late final TabController _tabsController;
+  final List<Widget> _tabs = <Widget>[];
 
   @override
   void dispose() {
