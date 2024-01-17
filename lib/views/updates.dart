@@ -35,7 +35,13 @@ class _UpdatesState extends State<Updates> {
             onTap: () {},
             child: Row(
               children: <Widget>[
-                Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, color: green, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+                Stack(
+                  alignment: Alignment.bottomRight,
+                  children: <Widget>[
+                    Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, color: green, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+                    Container(padding: const EdgeInsets.all(2), decoration: BoxDecoration(shape: BoxShape.circle, color: green, border: Border.all()), child: const Icon(FontAwesome.plus_solid, size: 13, color: white)),
+                  ],
+                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -53,13 +59,13 @@ class _UpdatesState extends State<Updates> {
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: 40,
+            height: 60,
             child: StatefulBuilder(
               builder: (BuildContext context, void Function(void Function()) _) => ListView.separated(
                 itemCount: 20,
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
-                itemBuilder: (BuildContext context, int index) => const CircleAvatar(radius: 30, backgroundColor: white, child: CircleAvatar(radius: 28, backgroundColor: white, backgroundImage: AssetImage("assets/images/me.jpg"))),
+                itemBuilder: (BuildContext context, int index) => const CircleAvatar(radius: 30, backgroundColor: green, child: CircleAvatar(radius: 28, backgroundColor: white, backgroundImage: AssetImage("assets/images/me.jpg"))),
               ),
             ),
           ),
