@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp/utils/shared.dart';
 
 class Channel extends StatefulWidget {
   const Channel({super.key});
@@ -27,7 +28,13 @@ class _ChannelState extends State<Channel> {
     return messages;
   }
 
-  final List<String> data = _generateMessages(30);
+  late final List<String> data;
+
+  @override
+  void initState() {
+    data = _generateMessages(30);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +55,7 @@ class _ChannelState extends State<Channel> {
                       height: 400,
                       width: MediaQuery.sizeOf(context).width,
                       padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: green.withOpacity(.05)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -57,7 +64,26 @@ class _ChannelState extends State<Channel> {
                           const SizedBox(height: 10),
                           StatefulBuilder(
                             builder: (BuildContext context, void Function(void Function()) _) {
-                              return Text(data);
+                              if (data[index].contains(RegExp(r'(http|https|www)'))) {
+                                final List<String> buffer = data[index].split(" ");
+                                return RichText(
+                                  maxLines: 3,
+                                  text: TextSpan(
+                                    children: <TextSpan>[
+                                      for (final String text in buffer)
+                                        TextSpan(
+                                          text: text,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: text.startsWith(RegExp(r'(http|https|www)')) ? blue : white,
+                                            fontWeight: FontWeight.w500,
+                                            decoration: text.startsWith(RegExp(r'(http|https|www)')) ? TextDecoration.underline : TextDecoration.none,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                );
+                              } else {}
                             },
                           ),
                         ],
