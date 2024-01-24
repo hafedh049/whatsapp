@@ -70,15 +70,15 @@ class _UpdatesState extends State<Updates> {
             ),
           ),
           const SizedBox(height: 10),
-          GestureDetector(
-            onTap: () {},
-            child: const Row(
-              children: <Widget>[
-                Text("Channels", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
-                Spacer(),
-                Icon(FontAwesome.plus_solid, color: white, size: 20),
-              ],
-            ),
+          Row(
+            children: <Widget>[
+              const Text("Channels", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+              const Spacer(),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(FontAwesome.plus_solid, color: white, size: 20),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
         ],
