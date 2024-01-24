@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
 import 'package:whatsapp/views/calls.dart';
-import 'package:whatsapp/views/chats.dart';
+import 'package:whatsapp/views/chat/chats.dart';
 import 'package:whatsapp/views/community/community.dart';
 import 'package:whatsapp/views/updates.dart';
 
