@@ -10,6 +10,7 @@ class Updates extends StatefulWidget {
 }
 
 class _UpdatesState extends State<Updates> {
+  final Map<String, IconData> _icons = <String, IconData>{"image": FontAwesome.image_solid, "video": FontAwesome.video_solid, "link": FontAwesome.link_solid};
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,6 +82,37 @@ class _UpdatesState extends State<Updates> {
             ],
           ),
           const SizedBox(height: 10),
+          Expanded(
+            child: ListView.separated(
+                itemBuilder: (BuildContext context, int index) => SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const Row(
+                            children: <Widget>[
+                              CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/images/me.jpg")),
+                              SizedBox(width: 10),
+                              Text("Roya Plaestine - رؤيا فلسطين", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Row(
+                                  children: <Widget>[],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                separatorBuilder: (BuildContext context, int index) => Divider(height: .5, thickness: .5, color: white.withOpacity(.5)),
+                itemCount: 30),
+          ),
         ],
       ),
     );
