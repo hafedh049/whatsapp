@@ -40,7 +40,9 @@ class _ChannelState extends State<Channel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: green,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -56,7 +58,7 @@ class _ChannelState extends State<Channel> {
                       height: 400,
                       width: MediaQuery.sizeOf(context).width,
                       padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: green.withOpacity(.05)),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: blue.withOpacity(.05)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -67,11 +69,14 @@ class _ChannelState extends State<Channel> {
                             builder: (BuildContext context, void Function(void Function()) _) {
                               return SelectableAutoLinkText(
                                 data[index],
+                                linkRegExpPattern: r"(www|http|https)[^ ]*",
                                 style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500),
                                 linkStyle: const TextStyle(color: blue, fontSize: 12, fontWeight: FontWeight.bold),
                                 highlightedLinkStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white, backgroundColor: blue),
                                 onTransformDisplayLink: AutoLinkUtils.shrinkUrl,
-                                onTap: (String url) async {},
+                                onTap: (String url) async {
+                                  debugPrint(url);
+                                },
                                 onLongPress: (String url) {},
                               );
                             },
