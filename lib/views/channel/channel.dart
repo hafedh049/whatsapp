@@ -1,5 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:selectable_autolink_text/selectable_autolink_text.dart';
 import 'package:whatsapp/utils/shared.dart';
 
 class Channel extends StatefulWidget {
@@ -65,31 +65,15 @@ class _ChannelState extends State<Channel> {
                           const SizedBox(height: 10),
                           StatefulBuilder(
                             builder: (BuildContext context, void Function(void Function()) _) {
-                              if (data[index].contains(RegExp(r'(http|https|www)'))) {
-                                final List<String> buffer = data[index].split(" ");
-                                return RichText(
-                                  maxLines: 3,
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      for (final String text in buffer)
-                                        TextSpan(
-                                          text: "$text${text == data.last ? '' : ' '}",
-                                          onEnter: (PointerEnterEvent pointer) {
-                                            print(pointer);
-                                          },
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: text.startsWith(RegExp(r'(http|https|www)')) ? blue : white,
-                                            fontWeight: FontWeight.w500,
-                                            decoration: text.startsWith(RegExp(r'(http|https|www)')) ? TextDecoration.underline : TextDecoration.none,
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                );
-                              } else {
-                                return Text(data[index], style: const TextStyle(fontSize: 12, color: white, fontWeight: FontWeight.w500), maxLines: 3);
-                              }
+                              return SelectableAutoLinkText(
+                                data[index],
+                                style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500),
+                                linkStyle: const TextStyle(color: blue, fontSize: 12, fontWeight: FontWeight.bold),
+                                highlightedLinkStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white, backgroundColor: blue),
+                                onTransformDisplayLink: AutoLinkUtils.shrinkUrl,
+                                onTap: (String url) async {},
+                                onLongPress: (String url) {},
+                              );
                             },
                           ),
                         ],
