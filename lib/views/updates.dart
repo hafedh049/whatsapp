@@ -102,11 +102,22 @@ class _UpdatesState extends State<Updates> {
                             children: <Widget>[
                               Expanded(
                                 child: Row(
-                                  children: <Widget>[],
+                                  children: <Widget>[
+                                    Icon(_icons[_icons.keys.elementAt(index % _icons.length)], size: 5, color: white.withOpacity(.8)),
+                                    const SizedBox(width: 5),
+                                    Row(
+                                      children: <Widget>[
+                                        Flexible(child: Text("a" * 100, style: const TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500), maxLines: 3, overflow: TextOverflow.fade)),
+                                        const SizedBox(width: 10),
+                                        Container(width: 80, height: 80, decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
