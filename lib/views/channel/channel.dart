@@ -54,20 +54,21 @@ class _ChannelState extends State<Channel> {
                     onTap: () {},
                     onDoubleTap: () {},
                     onLongPress: () {},
-                    child: Container(
-                      height: 400,
-                      width: MediaQuery.sizeOf(context).width,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: blue.withOpacity(.05)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Expanded(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)))),
-                          const SizedBox(height: 10),
-                          StatefulBuilder(
-                            builder: (BuildContext context, void Function(void Function()) _) {
-                              return SelectableAutoLinkText(
+                    child: Stack(
+                      alignment: Alignment.bottomLeft,
+                      children: <Widget>[
+                        Container(
+                          height: 400,
+                          width: MediaQuery.sizeOf(context).width,
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: blue.withOpacity(.05)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Expanded(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)))),
+                              const SizedBox(height: 10),
+                              SelectableAutoLinkText(
                                 data[index],
                                 linkRegExpPattern: r"(www|http|https)[^ ]*",
                                 style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500),
@@ -78,11 +79,20 @@ class _ChannelState extends State<Channel> {
                                   debugPrint(url);
                                 },
                                 onLongPress: (String url) {},
-                              );
-                            },
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        GestureDetector(
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                            child: Row(
+                              children: <Widget>[],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
