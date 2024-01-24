@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
+import 'package:whatsapp/views/channel/channel.dart';
 
 class Updates extends StatefulWidget {
   const Updates({super.key});
@@ -85,7 +86,7 @@ class _UpdatesState extends State<Updates> {
           Expanded(
             child: ListView.separated(
               itemBuilder: (BuildContext context, int index) => GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Channel())),
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   height: 160,

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp/utils/shared.dart';
 
@@ -54,7 +55,7 @@ class _ChannelState extends State<Channel> {
                     child: Container(
                       height: 400,
                       width: MediaQuery.sizeOf(context).width,
-                      padding: const EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: green.withOpacity(.05)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +73,10 @@ class _ChannelState extends State<Channel> {
                                     children: <TextSpan>[
                                       for (final String text in buffer)
                                         TextSpan(
-                                          text: text,
+                                          text: "$text${text == data.last ? '' : ' '}",
+                                          onEnter: (PointerEnterEvent pointer) {
+                                            print(pointer);
+                                          },
                                           style: TextStyle(
                                             fontSize: 12,
                                             color: text.startsWith(RegExp(r'(http|https|www)')) ? blue : white,
@@ -83,7 +87,9 @@ class _ChannelState extends State<Channel> {
                                     ],
                                   ),
                                 );
-                              } else {}
+                              } else {
+                                return Text(data[index], style: const TextStyle(fontSize: 12, color: white, fontWeight: FontWeight.w500), maxLines: 3);
+                              }
                             },
                           ),
                         ],
