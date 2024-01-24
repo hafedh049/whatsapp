@@ -8,6 +8,27 @@ class Channel extends StatefulWidget {
 }
 
 class _ChannelState extends State<Channel> {
+  List<String> _generateMessages(int count) {
+    List<String> messages = [];
+
+    for (int i = 1; i <= count; i++) {
+      String message = "Message $i";
+
+      // Add links randomly to some messages
+      if (i % 3 == 0) {
+        message += " with a link: https://example.com";
+      } else if (i % 2 == 0) {
+        message += " with a link: www.example.com";
+      }
+
+      messages.add(message);
+    }
+
+    return messages;
+  }
+
+  final List<String> data = _generateMessages(30);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +53,12 @@ class _ChannelState extends State<Channel> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)),
-                            ),
+                          Expanded(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)))),
+                          const SizedBox(height: 10),
+                          StatefulBuilder(
+                            builder: (BuildContext context, void Function(void Function()) _) {
+                              return Text(data);
+                            },
                           ),
                         ],
                       ),
