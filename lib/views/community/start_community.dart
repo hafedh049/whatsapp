@@ -3,27 +3,34 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';
 import 'package:whatsapp/utils/shared.dart';
 
-class Community extends StatefulWidget {
-  const Community({super.key});
+class StartCommunity extends StatefulWidget {
+  const StartCommunity({super.key});
 
   @override
-  State<Community> createState() => _CommunityState();
+  State<StartCommunity> createState() => _StartCommunityState();
 }
 
-class _CommunityState extends State<Community> {
+class _StartCommunityState extends State<StartCommunity> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: <Widget>[
+          Align(
+            alignment: AlignmentDirectional.topCenter,
+            child: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(FontAwesome.chevron_right_solid, size: 10, color: green),
+            ),
+          ),
           LottieBuilder.asset("assets/lotties/community.json", reverse: true),
-          const Text("Stay connected with a community", style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
+          const Text("Create a new community", style: TextStyle(color: white, fontSize: 25, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
-          const Flexible(
+          Flexible(
             child: Text(
-              "Communities bring members together in topic-based groups, and male it easy to get admin announcements. Any community you're added to will appear here.",
-              style: TextStyle(color: white, fontSize: 12),
+              "Bring together a neighborhood, school or more. Create topic-based groups for members, and easily send them admin announcements.",
+              style: TextStyle(color: white.withOpacity(.6), fontSize: 12),
               textAlign: TextAlign.center,
             ),
           ),
@@ -40,7 +47,7 @@ class _CommunityState extends State<Community> {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const Spacer(),
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -48,7 +55,7 @@ class _CommunityState extends State<Community> {
               alignment: Alignment.center,
               width: MediaQuery.sizeOf(context).width,
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: const Text("Start your community", style: TextStyle(color: black, fontSize: 12)),
+              child: const Text("Get started", style: TextStyle(color: black, fontSize: 12)),
             ),
           ),
         ],
