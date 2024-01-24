@@ -88,7 +88,7 @@ class _UpdatesState extends State<Updates> {
                 onTap: () {},
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
-                  height: 150,
+                  height: 160,
                   width: MediaQuery.sizeOf(context).width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,42 +98,29 @@ class _UpdatesState extends State<Updates> {
                         children: <Widget>[
                           CircleAvatar(radius: 15, backgroundImage: AssetImage("assets/images/me.jpg")),
                           SizedBox(width: 10),
-                          Text("Roya Plaestine - رؤيا فلسطين", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
+                          Text("Roya Palestine - رؤيا فلسطين", style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.w500)),
                         ],
                       ),
                       const SizedBox(height: 10),
+                      Icon(_icons[_icons.keys.elementAt(index % _icons.length)], size: 12, color: white.withOpacity(.8)),
+                      const SizedBox(height: 5),
                       Row(
                         children: <Widget>[
-                          Expanded(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Icon(_icons[_icons.keys.elementAt(index % _icons.length)], size: 10, color: white.withOpacity(.8)),
-                                const SizedBox(width: 5),
-                                Expanded(
-                                  child: Row(
-                                    children: <Widget>[
-                                      Flexible(child: Text("a" * 200, style: TextStyle(color: white.withOpacity(.8), fontSize: 14, fontWeight: FontWeight.w500), maxLines: 3, overflow: TextOverflow.fade)),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          Flexible(child: Text("a" * 200, style: TextStyle(color: white.withOpacity(.8), fontSize: 14, fontWeight: FontWeight.w500), maxLines: 3, overflow: TextOverflow.fade)),
                           const SizedBox(width: 10),
                           Container(width: 60, height: 60, decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
                         ],
                       ),
                       const SizedBox(height: 10),
-                      const Row(
+                      Row(
                         children: <Widget>[
-                          Icon(FontAwesome.circle_dot_solid, size: 5, color: green),
-                          SizedBox(width: 5),
-                          Text("999+ unread", style: TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
-                          SizedBox(width: 5),
-                          Icon(FontAwesome.circle_dot_solid, size: 2, color: green),
-                          SizedBox(width: 5),
-                          Text("Just now", style: TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
+                          const Icon(FontAwesome.circle_dot_solid, size: 5, color: green),
+                          const SizedBox(width: 5),
+                          const Text("999+ unread", style: TextStyle(color: green, fontSize: 12, fontWeight: FontWeight.w500)),
+                          const SizedBox(width: 5),
+                          const Icon(FontAwesome.circle_dot_solid, size: 2, color: green),
+                          const SizedBox(width: 5),
+                          Text("Just now", style: TextStyle(color: white.withOpacity(.8), fontSize: 12, fontWeight: FontWeight.w500)),
                         ],
                       ),
                     ],
@@ -144,6 +131,47 @@ class _UpdatesState extends State<Updates> {
               itemCount: 30,
               padding: EdgeInsets.zero,
               reverse: true,
+            ),
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onTap: () {},
+            child: const Row(
+              children: <Widget>[
+                Text("Find Channels", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                Spacer(),
+                Text("See all", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: green)),
+                SizedBox(width: 5),
+                Icon(FontAwesome.chevron_right_solid, color: green, size: 13),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onLongPress: () {},
+            onTap: () {},
+            child: Row(
+              children: <Widget>[
+                Stack(
+                  alignment: Alignment.bottomRight,
+                  children: <Widget>[
+                    Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+                    Container(padding: const EdgeInsets.all(2), decoration: BoxDecoration(shape: BoxShape.circle, color: green, border: Border.all(color: black)), child: const Icon(FontAwesome.check_solid, size: 13, color: white)),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text("My status", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      const SizedBox(height: 5),
+                      Text("Tap to add status update", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
