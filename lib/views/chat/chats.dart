@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
+import 'package:whatsapp/views/chat/chat_room.dart';
 
 class Chats extends StatefulWidget {
   const Chats({super.key});
@@ -87,7 +88,10 @@ class _ChatsState extends State<Chats> {
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
             itemBuilder: (BuildContext context, int index) => _choices[index % _choices.length],
             itemCount: _itemCount,
-            separatorBuilder: (BuildContext context, int index) => Container(margin: const EdgeInsets.symmetric(vertical: 16), height: .2, color: white.withOpacity(.6)),
+            separatorBuilder: (BuildContext context, int index) => GestureDetector(
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const ChatRoom())),
+              child: Container(margin: const EdgeInsets.symmetric(vertical: 16), height: .2, color: white.withOpacity(.6)),
+            ),
           ),
         ),
       ],
