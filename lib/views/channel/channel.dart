@@ -19,10 +19,27 @@ class _ChannelState extends State<Channel> {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (BuildContext context, int index) => Center(
-                  child: Container(
-                    height: 400,
-                    width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: GestureDetector(
+                    onTap: () {},
+                    onDoubleTap: () {},
+                    onLongPress: () {},
+                    child: Container(
+                      height: 400,
+                      width: MediaQuery.sizeOf(context).width,
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
