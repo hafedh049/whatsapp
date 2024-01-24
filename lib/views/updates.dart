@@ -147,31 +147,44 @@ class _UpdatesState extends State<Updates> {
             ),
           ),
           const SizedBox(height: 10),
-          GestureDetector(
-            onLongPress: () {},
-            onTap: () {},
-            child: Row(
-              children: <Widget>[
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: <Widget>[
-                    Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
-                    Container(padding: const EdgeInsets.all(2), decoration: BoxDecoration(shape: BoxShape.circle, color: green, border: Border.all(color: black)), child: const Icon(FontAwesome.check_solid, size: 13, color: white)),
-                  ],
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const Text("My status", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
-                      const SizedBox(height: 5),
-                      Text("Tap to add status update", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
-                    ],
+          SizedBox(
+            height: 140,
+            child: StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) => ListView.separated(
+                itemCount: 20,
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
+                itemBuilder: (BuildContext context, int index) => GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(width: .5, color: white.withOpacity(.5))),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Stack(
+                          alignment: Alignment.bottomRight,
+                          children: <Widget>[
+                            Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover))),
+                            Container(padding: const EdgeInsets.all(2), decoration: BoxDecoration(shape: BoxShape.circle, color: green, border: Border.all(color: black)), child: const Icon(FontAwesome.circle_check, size: 13, color: white)),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        const Text("Fox News", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: green.withOpacity(.1)),
+                            child: Text("Follow", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: green.withOpacity(.9))),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ],
