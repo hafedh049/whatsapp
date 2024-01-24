@@ -18,13 +18,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:truck/models/messages/file_message_model.dart';
-import 'package:truck/models/messages/image_message_module.dart';
-import 'package:truck/models/messages/text_message_model.dart';
-import 'package:truck/views/helpers/utils/globals.dart';
-import 'package:truck/views/helpers/wait.dart';
-import 'package:truck/views/helpers/wrong.dart';
+import 'package:whatsapp/models/messages/file_message_model.dart';
+import 'package:whatsapp/models/messages/image_message_module.dart';
+import 'package:whatsapp/models/messages/text_message_model.dart';
+import 'package:whatsapp/utils/shared.dart';
 import 'package:voice_message_package/voice_message_package.dart';
+import 'package:whatsapp/views/miscellaneous/wait.dart';
+import 'package:whatsapp/views/miscellaneous/wrong.dart';
 
 class ChatRoom extends StatefulWidget {
   const ChatRoom({super.key});
@@ -51,7 +51,7 @@ class _ChatRoomState extends State<ChatRoom> {
     _attachments = <Map<String, dynamic>>[
       <String, dynamic>{"icon": FontAwesome.image, "title": "Pictures", "callback": _handleImageSelection},
       <String, dynamic>{"icon": FontAwesome.file, "title": "Files", "callback": _handleFileSelection},
-      <String, dynamic>{"icon": FontAwesome.leaf, "title": "Cancel", "callback": () => Navigator.pop(context)},
+      <String, dynamic>{"icon": FontAwesome.leaf_solid, "title": "Cancel", "callback": () => Navigator.pop(context)},
     ];
     super.initState();
   }
@@ -170,7 +170,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 loadingBuilder: (BuildContext context) => const Wait(),
                 query: FirebaseFirestore.instance.collection("chats").doc(FirebaseAuth.instance.currentUser!.uid).collection("messages").orderBy("createdAt", descending: true),
                 emptyBuilder: (BuildContext context) => const Text("EMPTY"),
-                errorBuilder: (BuildContext context, Object error, StackTrace stackTrace) => Wrong(errorMessage: error.toString()),
+                errorBuilder: (BuildContext context, Object error, StackTrace stackTrace) => Wrong(error: error.toString()),
                 itemBuilder: (BuildContext context, QueryDocumentSnapshot<Map<String, dynamic>> doc) {
                   final Map<String, dynamic> data = doc.data();
                   if (data["type"] == "text") {
@@ -205,6 +205,7 @@ class _ChatRoomState extends State<ChatRoom> {
                         onPlaying: () {},
                       ),
                       innerPadding: 4,
+                      isSender: true,
                     );
                   } else {
                     return const Text("data");
@@ -229,7 +230,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 children: <Widget>[
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(FontAwesome.folder_plus, size: 15, color: green),
+                    icon: const Icon(FontAwesome.folder_plus_solid, size: 15, color: green),
                   ),
                   Flexible(
                     child: TextField(
