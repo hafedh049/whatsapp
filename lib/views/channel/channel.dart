@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:selectable_autolink_text/selectable_autolink_text.dart';
 import 'package:whatsapp/utils/shared.dart';
 
@@ -48,6 +49,25 @@ class _ChannelState extends State<Channel> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: green,
+        leadingWidth: 60,
+        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: white)),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text("", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+                const SizedBox(width: 5),
+                const Icon(FontAwesome.chevron_left_solid, size: 20, color: white),
+              ],
+            ),
+            const SizedBox(height: 5),
+            Text("365K followers", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
+          ],
+        ),
+        actions: <Widget>[],
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
