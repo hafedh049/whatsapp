@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:cool_dropdown/cool_dropdown.dart';
-import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:selectable_autolink_text/selectable_autolink_text.dart';
@@ -51,8 +50,6 @@ class _ChannelState extends State<Channel> {
 
   final List<String> _reactions = <String>["👌", "❤️", "😂", "😮", "😥", "🙏"];
 
-  final DropdownController _menuController = DropdownController();
-
   late final Map<String, void Function()> _items;
 
   @override
@@ -96,10 +93,16 @@ class _ChannelState extends State<Channel> {
             onPressed: () {},
             icon: const Icon(FontAwesome.bell_slash_solid, size: 20, color: white),
           ),
-          CoolDropdown<String>(
-            dropdownList: <CoolDropdownItem<String>>[for (final String item in _items.keys) CoolDropdownItem(label: item, value: item[0].toUpperCase() + item.substring(1))],
-            controller: _menuController,
-            onChange: (String item) => _items[item],
+          PopupMenuButton<String>(
+            onSelected: (String value) {},
+            itemBuilder: (BuildContext context) {
+              return {'Logout', 'Settings'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
           ),
           IconButton(
             onPressed: () {},
