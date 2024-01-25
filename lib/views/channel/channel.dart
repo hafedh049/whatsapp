@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:selectable_autolink_text/selectable_autolink_text.dart';
 import 'package:whatsapp/utils/shared.dart';
+
+import '../../utils/callbacks.dart';
 
 class Channel extends StatefulWidget {
   const Channel({super.key});
@@ -88,20 +92,24 @@ class _ChannelState extends State<Channel> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 25),
                           ],
                         ),
                         GestureDetector(
                           onTap: () {},
                           child: Container(
                             padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: black),
-                            child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                              for (final String reaction in _reactions) ...<Widget>[
-                                Text(reaction),
-                                const SizedBox(width: 5),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: black, border: Border.all(color: green, width: .5)),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                for (final String reaction in _reactions) ...<Widget>[
+                                  Text(reaction),
+                                  const SizedBox(width: 5),
+                                ],
+                                Text(formatNumber(Random().nextInt(4000)), style: TextStyle(color: white.withOpacity(.6))),
                               ],
-                            ]),
+                            ),
                           ),
                         ),
                       ],
