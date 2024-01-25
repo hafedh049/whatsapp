@@ -4,6 +4,7 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
+import 'package:whatsapp/views/call/create_link.dart';
 
 class Calls extends StatefulWidget {
   const Calls({super.key});
@@ -21,8 +22,7 @@ class _CallsState extends State<Calls> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           GestureDetector(
-            onLongPress: () {},
-            onTap: () {},
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CreateLink())),
             child: Row(
               children: <Widget>[
                 Container(width: 50, height: 50, decoration: const BoxDecoration(shape: BoxShape.circle, color: green), child: const Icon(FontAwesome.link_solid, size: 20, color: black)),
