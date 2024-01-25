@@ -48,26 +48,48 @@ class _ChannelState extends State<Channel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: green,
-        leadingWidth: 60,
-        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: white)),
+        leadingWidth: 75,
+        leading: Container(
+          padding: const EdgeInsets.only(left: 8),
+          child: InkWell(
+            onTap: () => Navigator.pop(context),
+            radius: 25,
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(FontAwesome.chevron_left_solid, size: 20, color: white),
+                SizedBox(width: 5),
+                CircleAvatar(backgroundImage: AssetImage("assets/images/me.jpg"), radius: 20),
+              ],
+            ),
+          ),
+        ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Row(
+            const Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text("", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
-                const SizedBox(width: 5),
-                const Icon(FontAwesome.chevron_left_solid, size: 20, color: white),
+                Text("الجزيرة فلسطين", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: white)),
+                SizedBox(width: 5),
+                Icon(FontAwesome.circle_check, size: 15, color: green),
               ],
             ),
             const SizedBox(height: 5),
             Text("365K followers", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.8))),
           ],
         ),
-        actions: <Widget>[],
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(FontAwesome.bell_slash_solid, size: 20, color: white),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(FontAwesome.ellipsis_vertical_solid, size: 20, color: white),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
