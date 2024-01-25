@@ -17,6 +17,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
   late final TabController _tabsController;
   final List<Widget> _tabs = <Widget>[const Community(), const Chats(), const Updates(), const Calls()];
+  final List<List<IconData>> _floats = <List<IconData>>[
+    <IconData>[],
+  ];
 
   @override
   void dispose() {
@@ -68,6 +71,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
           Expanded(child: TabBarView(controller: _tabsController, children: _tabs)),
         ],
+      ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[],
       ),
     );
   }
