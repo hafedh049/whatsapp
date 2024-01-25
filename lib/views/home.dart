@@ -4,6 +4,7 @@ import 'package:whatsapp/utils/shared.dart';
 import 'package:whatsapp/views/call/calls.dart';
 import 'package:whatsapp/views/chat/chats.dart';
 import 'package:whatsapp/views/community/community.dart';
+import 'package:whatsapp/views/settings.dart';
 import 'package:whatsapp/views/updates.dart';
 
 class Home extends StatefulWidget {
@@ -36,10 +37,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
     _tabsController = TabController(length: 4, vsync: this);
     _items = <String, void Function()>{
-      "Channel info": () {},
-      "Unfollow": () {},
-      "Share": () {},
-      "Report": () {},
+      "New Group": () {},
+      "New broadcast": () {},
+      "Linked devices": () {},
+      "Starred messages": () {},
+      "Settings": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Settings())),
     };
     super.initState();
   }
@@ -60,9 +62,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             onPressed: () {},
             icon: const Icon(Bootstrap.search, size: 20, color: white),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Bootstrap.grid_3x3_gap, size: 20, color: white),
+          PopupMenuButton<String>(
+            iconColor: white,
+            iconSize: 25,
+            onSelected: (String value) => _items[value]!(),
+            itemBuilder: (BuildContext context) {
+              return _items.keys.map((String choice) => PopupMenuItem<String>(value: choice, child: Text(choice))).toList();
+            },
           ),
         ],
       ),
