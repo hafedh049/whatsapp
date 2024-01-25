@@ -15,13 +15,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
+  final GlobalKey<State> _floatKey = GlobalKey<State>();
+  int _float = 0;
   late final TabController _tabsController;
   final List<Widget> _tabs = <Widget>[const Community(), const Chats(), const Updates(), const Calls()];
   final List<List<dynamic>> _floats = <List<dynamic>>[
-    <dynamic>[(){}],
-    <dynamic>[(){},FontAwesome.message_solid],
-    <dynamic>[(){},FontAwesome.camera_solid, FontAwesome.pen_solid],
-    <dynamic>[(){},Icons.phone],
+    <dynamic>[() {}],
+    <dynamic>[() {}, FontAwesome.message_solid],
+    <dynamic>[() {}, FontAwesome.camera_solid, FontAwesome.pen_solid],
+    <dynamic>[() {}, Icons.phone],
   ];
 
   @override
@@ -65,6 +67,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             dividerHeight: 0,
             labelColor: green,
             controller: _tabsController,
+            onTap: (int value) => _floatKey.currentState!.setState(() => _float = value),
             tabs: const <Tab>[
               Tab(icon: Icon(Bootstrap.people, size: 20, color: white)),
               Tab(text: "Chats"),
@@ -75,19 +78,26 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           Expanded(child: TabBarView(controller: _tabsController, children: _tabs)),
         ],
       ),
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          for (final IconData icon in _floats[_pageController.page!.toInt()].skip(1))
-            GestureDetector(
-              onTap:_floats[_pageController.page!.toInt()].first ,
-              child: Container(
-                padding:   EdgeInsets.all(icon== _floats[_pageController.page!.toInt()][1] ?8:4),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: ),
-                child: Icon(icon, size: 25, color: white),
-              ),
-            ),
-        ],
+      floatingActionButton: StatefulBuilder(
+        key: _floatKey,
+        builder: (BuildContext context, void Function(void Function()) _) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              for (final IconData icon in _floats[_float].skip(1).toList().reversed) ...<Widget>[
+                GestureDetector(
+                  onTap: _floats[_float].first,
+                  child: Container(
+                    padding: EdgeInsets.all(icon == _floats[_float][1] ? 12 : 8),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: icon == _floats[_float][1] ? green : blue),
+                    child: Icon(icon, size: icon == _floats[_float][1] ? 25 : 15, color: icon == _floats[_float][1] ? black : white),
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+            ],
+          );
+        },
       ),
     );
   }
