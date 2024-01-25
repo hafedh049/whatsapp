@@ -35,8 +35,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     _tabsController = TabController(length: 4, vsync: this);
+    _items = <String, void Function()>{
+      "Channel info": () {},
+      "Unfollow": () {},
+      "Share": () {},
+      "Report": () {},
+    };
     super.initState();
   }
+
+  late final Map<String, void Function()> _items;
 
   @override
   Widget build(BuildContext context) {

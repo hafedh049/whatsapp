@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:selectable_autolink_text/selectable_autolink_text.dart';
@@ -94,19 +93,19 @@ class _ChannelState extends State<Channel> {
             icon: const Icon(FontAwesome.bell_slash_solid, size: 20, color: white),
           ),
           PopupMenuButton<String>(
-            onSelected: (String value) {},
+            iconColor: white,
+            iconSize: 30,
+            onSelected: (String value) => _items[value]!(),
             itemBuilder: (BuildContext context) {
-              return {'Logout', 'Settings'}.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
+              return _items.keys.map(
+                (String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                },
+              ).toList();
             },
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(FontAwesome.ellipsis_vertical_solid, size: 20, color: white),
           ),
         ],
       ),
