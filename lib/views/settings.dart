@@ -11,6 +11,62 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  final List<Map<String, dynamic>> _items = <Map<String, dynamic>>[
+    <String, dynamic>{
+      "icon": FontAwesome.key_solid,
+      "title": "Account",
+      "subtitle": "Security notifications, change number",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.key_solid,
+      "title": "Privacy",
+      "subtitle": "Block contacts, disappearing messages",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.key_solid,
+      "title": "Avatar",
+      "subtitle": "Create, edit, profile photo",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.key_solid,
+      "title": "Chats",
+      "subtitle": "Theme, wallpapers, chat history",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.key_solid,
+      "title": "Notifications",
+      "subtitle": "Message, group & call tones",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.key_solid,
+      "title": "Storage and data",
+      "subtitle": "Network usage, auto-download",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": Bootstrap.balloon,
+      "title": "App language",
+      "subtitle": "English (device's language)",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.question_solid,
+      "title": "Help",
+      "subtitle": "Help center, contact us, privacy policy",
+      "callback": () {},
+    },
+    <String, dynamic>{
+      "icon": FontAwesome.people_group_solid,
+      "title": "Invite a friend",
+      "subtitle": "",
+      "callback": () {},
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +79,14 @@ class _SettingsState extends State<Settings> {
             icon: const Icon(FontAwesome.searchengin_brand, size: 20, color: white),
           ),
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[],
+        ),
       ),
     );
   }
