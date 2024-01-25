@@ -19,6 +19,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   final List<Widget> _tabs = <Widget>[const Community(), const Chats(), const Updates(), const Calls()];
   final List<List<IconData>> _floats = <List<IconData>>[
     <IconData>[],
+    <IconData>[],
+    <IconData>[],
+    <IconData>[],
   ];
 
   @override
