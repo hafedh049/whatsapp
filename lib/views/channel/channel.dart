@@ -37,6 +37,8 @@ class _ChannelState extends State<Channel> {
     super.initState();
   }
 
+  final List<String> _reactions = <String>["👌", "❤️", "😂", "😮", "😥", "🙏"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,9 +89,7 @@ class _ChannelState extends State<Channel> {
                           child: Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                            child: Row(
-                              children: <Widget>[],
-                            ),
+                            child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[for (final String reaction in _reactions) Text(reaction)]),
                           ),
                         ),
                       ],
