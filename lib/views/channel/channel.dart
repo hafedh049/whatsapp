@@ -14,7 +14,7 @@ class _ChannelState extends State<Channel> {
     List<String> messages = [];
 
     for (int i = 1; i <= count; i++) {
-      String message = "Message $i";
+      String message = "Message $i" * 20;
 
       // Add links randomly to some messages
       if (i % 3 == 0) {
@@ -59,37 +59,49 @@ class _ChannelState extends State<Channel> {
                     child: Stack(
                       alignment: Alignment.bottomLeft,
                       children: <Widget>[
-                        Container(
-                          height: 400,
-                          width: MediaQuery.sizeOf(context).width,
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: blue.withOpacity(.05)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Expanded(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)))),
-                              const SizedBox(height: 10),
-                              SelectableAutoLinkText(
-                                data[index],
-                                linkRegExpPattern: r"(www|http|https)[^ ]*",
-                                style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500),
-                                linkStyle: const TextStyle(color: blue, fontSize: 12, fontWeight: FontWeight.bold),
-                                highlightedLinkStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white, backgroundColor: blue),
-                                onTransformDisplayLink: AutoLinkUtils.shrinkUrl,
-                                onTap: (String url) async {
-                                  debugPrint(url);
-                                },
-                                onLongPress: (String url) {},
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Container(
+                              height: 400,
+                              width: MediaQuery.sizeOf(context).width,
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: black),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Expanded(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: const DecorationImage(image: AssetImage("assets/images/me.jpg"), fit: BoxFit.cover)))),
+                                  const SizedBox(height: 10),
+                                  SelectableAutoLinkText(
+                                    data[index],
+                                    linkRegExpPattern: r"(www|http|https)[^ ]*",
+                                    style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500),
+                                    linkStyle: const TextStyle(color: blue, fontSize: 12, fontWeight: FontWeight.bold),
+                                    highlightedLinkStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white, backgroundColor: blue),
+                                    onTransformDisplayLink: AutoLinkUtils.shrinkUrl,
+                                    onTap: (String url) async {
+                                      debugPrint(url);
+                                    },
+                                    onLongPress: (String url) {},
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 20),
+                          ],
                         ),
                         GestureDetector(
+                          onTap: () {},
                           child: Container(
                             padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                            child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[for (final String reaction in _reactions) Text(reaction)]),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: black),
+                            child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                              for (final String reaction in _reactions) ...<Widget>[
+                                Text(reaction),
+                                const SizedBox(width: 5),
+                              ],
+                            ]),
                           ),
                         ),
                       ],
