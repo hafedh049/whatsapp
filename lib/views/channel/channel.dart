@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:selectable_autolink_text/selectable_autolink_text.dart';
@@ -16,12 +18,11 @@ class Channel extends StatefulWidget {
 
 class _ChannelState extends State<Channel> {
   List<String> _generateMessages(int count) {
-    List<String> messages = [];
+    List<String> messages = <String>[];
 
     for (int i = 1; i <= count; i++) {
       String message = "Message $i" * 20;
 
-      // Add links randomly to some messages
       if (i % 3 == 0) {
         message += " with a link: https://example.com";
       } else if (i % 2 == 0) {
@@ -39,10 +40,20 @@ class _ChannelState extends State<Channel> {
   @override
   void initState() {
     data = _generateMessages(30);
+    _items = <String, void Function()>{
+      "Channel info": () {},
+      "Unfollow": () {},
+      "Share": () {},
+      "Report": () {},
+    };
     super.initState();
   }
 
   final List<String> _reactions = <String>["👌", "❤️", "😂", "😮", "😥", "🙏"];
+
+  final DropdownController _menuController = DropdownController();
+
+  late final Map<String, void Function()> _items;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +95,11 @@ class _ChannelState extends State<Channel> {
           IconButton(
             onPressed: () {},
             icon: const Icon(FontAwesome.bell_slash_solid, size: 20, color: white),
+          ),
+          CoolDropdown<String>(
+            dropdownList: <CoolDropdownItem<String>>[for (final String item in _items.keys) CoolDropdownItem(label: item, value: item[0].toUpperCase() + item.substring(1))],
+            controller: _menuController,
+            onChange: (String item) => _items[item],
           ),
           IconButton(
             onPressed: () {},
