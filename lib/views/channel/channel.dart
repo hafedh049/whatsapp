@@ -96,7 +96,32 @@ class _ChannelState extends State<Channel> {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) => Container(
+                                padding: const EdgeInsets.all(16),
+                                width: MediaQuery.sizeOf(context).width * .6,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    for (final String reaction in _reactions) ...<Widget>[
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Text(reaction),
+                                          const SizedBox(width: 20),
+                                          Text(formatNumber(Random().nextInt(4000)), style: TextStyle(color: white.withOpacity(.6))),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                    ],
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                           child: Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: black, border: Border.all(color: green, width: .5)),
