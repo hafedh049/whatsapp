@@ -17,11 +17,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   final PageController _pageController = PageController();
   late final TabController _tabsController;
   final List<Widget> _tabs = <Widget>[const Community(), const Chats(), const Updates(), const Calls()];
-  final List<List<IconData>> _floats = <List<IconData>>[
-    <IconData>[],
-    <IconData>[],
-    <IconData>[],
-    <IconData>[],
+  final List<List<dynamic>> _floats = <List<dynamic>>[
+    <dynamic>[(){}],
+    <dynamic>[(){},FontAwesome.message_solid],
+    <dynamic>[(){},FontAwesome.camera_solid, FontAwesome.pen_solid],
+    <dynamic>[(){},Icons.phone],
   ];
 
   @override
@@ -77,7 +77,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[],
+        children: <Widget>[
+          for (final IconData icon in _floats[_pageController.page!.toInt()].skip(1))
+            GestureDetector(
+              onTap:_floats[_pageController.page!.toInt()].first ,
+              child: Container(
+                padding:   EdgeInsets.all(icon== _floats[_pageController.page!.toInt()][1] ?8:4),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: ),
+                child: Icon(icon, size: 25, color: white),
+              ),
+            ),
+        ],
       ),
     );
   }
