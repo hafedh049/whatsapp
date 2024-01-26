@@ -12,11 +12,20 @@ class DeleteAccount extends StatefulWidget {
 }
 
 class _DeleteAccountState extends State<DeleteAccount> {
+  final TextEditingController _phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: white)),
           title: const Text("Delete this account", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: white)),
@@ -90,6 +99,8 @@ class _DeleteAccountState extends State<DeleteAccount> {
                             const SizedBox(height: 5),
                             InternationalPhoneNumberInput(
                               hintText: "Phone number",
+                              selectorConfig: const SelectorConfig(leadingPadding: 0, selectorType: PhoneInputSelectorType.BOTTOM_SHEET, useBottomSheetSafeArea: true),
+                              textFieldController: _phoneController,
                               onInputChanged: (PhoneNumber value) {},
                             ),
                           ],
