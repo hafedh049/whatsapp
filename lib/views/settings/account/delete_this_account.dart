@@ -225,17 +225,17 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                   ),
                                 ),
                                 const SizedBox(width: 10),
-                                InternationalPhoneNumberInput(onInputChanged: null),
                                 Expanded(
-                                  child: TextField(
-                                    autofocus: true,
-                                    controller: _phoneNumberController,
-                                    style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                    decoration: InputDecoration(
-                                      hintText: "Phone number",
-                                      hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                      focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
-                                    ),
+                                  child: InternationalPhoneNumberInput(
+                                    showSelector: false,
+                                    onInputChanged: null,
+                                    textFieldController: _phoneNumberController,
+                                    inputBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                    hintText: "Phone number",
+                                    selectorButtonOnErrorPadding: 0,
+                                    errorMessage: "",
+                                    cursorColor: green,
+                                    textStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ],
