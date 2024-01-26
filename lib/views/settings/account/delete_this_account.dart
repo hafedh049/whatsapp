@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flag/flag.dart' as flag;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 import '../../../utils/shared.dart';
@@ -16,6 +19,8 @@ class _DeleteAccountState extends State<DeleteAccount> {
   final TextEditingController _countryCodeController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   String _country = "Tunisia";
+
+  Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/countries.json"));
 
   @override
   void dispose() {
@@ -98,7 +103,35 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                     context: context,
                                     builder: (BuildContext context) => SizedBox(
                                       height: MediaQuery.sizeOf(context).width * .4,
-                                      child: FutureBuilder(future: , builder: (BuildContext context,AsyncSnapshot snapshot) => ,),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          const SizedBox(height: 20),
+                                          Expanded(
+                                            child: FutureBuilder<List<Map<String, dynamic>>>(
+                                              future: _load(),
+                                              builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                                                if (snapshot.hasData) {
+                                                  final List<Map<String, dynamic>> data = snapshot.data!;
+                                                  return ListView.separated(
+                                                    itemBuilder: (BuildContext context, int index) => ListTile(
+                                                      leading: flag.Flag.fromString(data[index]["country_code"]),
+                                                      title: Text(data[index][""], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
+                                                      subtitle: Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
+                                                      trailing: Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
+                                                    ),
+                                                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                                                    itemCount: data.length,
+                                                    padding: EdgeInsets.zero,
+                                                  );
+                                                } else {
+                                                  return const CircularProgressIndicator(color: green);
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
