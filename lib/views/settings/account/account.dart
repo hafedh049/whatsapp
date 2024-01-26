@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/account/change_number.dart';
 import 'package:whatsapp/views/settings/account/email_address.dart';
 import 'package:whatsapp/views/settings/account/passkeys.dart';
 import 'package:whatsapp/views/settings/account/security_notifications.dart';
+import 'package:whatsapp/views/settings/account/two_step_verification.dart';
 
 import '../../../utils/shared.dart';
 
@@ -37,12 +39,12 @@ class _AccountState extends State<Account> {
       <String, dynamic>{
         "icon": FontAwesome.rectangle_list_solid,
         "title": "Two-step verification",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const TwoStepVerification())),
       },
       <String, dynamic>{
         "icon": Bootstrap.door_open,
         "title": "Change number",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const ChangeNumber())),
       },
       <String, dynamic>{
         "icon": FontAwesome.file_code_solid,

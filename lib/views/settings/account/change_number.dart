@@ -3,15 +3,15 @@ import 'package:icons_plus/icons_plus.dart';
 
 import '../../../utils/shared.dart';
 
-class TwoStepVerification extends StatelessWidget {
-  const TwoStepVerification({super.key});
+class ChangeNumber extends StatelessWidget {
+  const ChangeNumber({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 20, color: white)),
-        title: const Text("Two-step verification", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: white)),
+        title: const Text("Change number", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
@@ -22,21 +22,29 @@ class TwoStepVerification extends StatelessWidget {
               child: CircleAvatar(
                 radius: 60,
                 backgroundColor: green.withOpacity(.05),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: green, borderRadius: BorderRadius.circular(5)),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Icon(FontAwesome.star_of_life_solid, size: 20, color: black),
-                      SizedBox(width: 5),
-                      Icon(FontAwesome.star_of_life_solid, size: 20, color: black),
-                      SizedBox(width: 5),
-                      Icon(FontAwesome.star_of_life_solid, size: 20, color: black),
-                    ],
-                  ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(FontAwesome.sim_card_solid, size: 25, color: green),
+                    SizedBox(width: 1),
+                    Icon(FontAwesome.ellipsis_solid, size: 15, color: green),
+                    SizedBox(width: 1),
+                    Icon(FontAwesome.sim_card_solid, size: 25, color: green),
+                  ],
                 ),
               ),
+            ),
+            const SizedBox(height: 30),
+            const Text(
+              "For extra security, turn on two-step verification, which will require a PIN when registering your phone number with Whatsapp again",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            Text(
+              "For extra security, turn on two-step verification, which will require a PIN when registering your phone number with Whatsapp again",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6)),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
             Text(
