@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/privacy/privacy.dart';
 
 import '../../utils/shared.dart';
 
@@ -20,13 +21,13 @@ class _SettingsState extends State<Settings> {
         "icon": FontAwesome.key_solid,
         "title": "Account",
         "subtitle": "Security notifications, change number",
-        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => )),
+        "callback": () => null,
       },
       <String, dynamic>{
         "icon": FontAwesome.lock_solid,
         "title": "Privacy",
         "subtitle": "Block contacts, disappearing messages",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Privacy())),
       },
       <String, dynamic>{
         "icon": FontAwesome.face_grimace_solid,
