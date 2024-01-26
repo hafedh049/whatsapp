@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/account/account.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
 
 import '../../utils/shared.dart';
@@ -21,7 +22,7 @@ class _SettingsState extends State<Settings> {
         "icon": FontAwesome.key_solid,
         "title": "Account",
         "subtitle": "Security notifications, change number",
-        "callback": () => null,
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Account())),
       },
       <String, dynamic>{
         "icon": FontAwesome.lock_solid,

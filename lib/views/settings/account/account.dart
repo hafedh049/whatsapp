@@ -17,42 +17,42 @@ class _AccountState extends State<Account> {
   void initState() {
     _items = <Map<String, dynamic>>[
       <String, dynamic>{
-        "icon": FontAwesome.key_solid,
+        "icon": FontAwesome.shield_halved_solid,
         "title": "Security notifications",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": FontAwesome.lock_solid,
+        "icon": FontAwesome.user_secret_solid,
         "title": "Passkeys",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": FontAwesome.face_grimace_solid,
+        "icon": FontAwesome.envelope_solid,
         "title": "E-mail address",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": FontAwesome.message_solid,
+        "icon": FontAwesome.rectangle_list_solid,
         "title": "Two-step verification",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": Bootstrap.bell_fill,
+        "icon": Bootstrap.door_open,
         "title": "Change number",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": FontAwesome.bars_progress_solid,
+        "icon": FontAwesome.file_code_solid,
         "title": "Request account info",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": Bootstrap.globe,
+        "icon": Bootstrap.person_plus_fill,
         "title": "Add account",
         "callback": () {},
       },
       <String, dynamic>{
-        "icon": FontAwesome.circle_question_solid,
+        "icon": FontAwesome.bucket_solid,
         "title": "Delete account",
         "callback": () {},
       },
@@ -71,7 +71,21 @@ class _AccountState extends State<Account> {
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[],
+          children: <Widget>[
+            for (final Map<String, dynamic> item in _items) ...<Widget>[
+              GestureDetector(
+                onTap: item["callback"],
+                child: Row(
+                  children: <Widget>[
+                    Icon(item["icon"], color: white.withOpacity(.6), size: 20),
+                    const SizedBox(width: 20),
+                    Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+            ],
+          ],
         ),
       ),
     );
