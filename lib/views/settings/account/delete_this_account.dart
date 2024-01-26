@@ -24,11 +24,12 @@ class _DeleteAccountState extends State<DeleteAccount> {
 
   final GlobalKey<State> _filterKey = GlobalKey<State>();
   final GlobalKey<State> _countryKey = GlobalKey<State>();
+  final GlobalKey<State> _phoneCodeKey = GlobalKey<State>();
 
   String _country = "Tunisia";
   String _phoneCode = "216";
 
-  Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/countries.json"));
+  Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/countries.json")).cast<Map<String, dynamic>>();
 
   @override
   void dispose() {
@@ -41,7 +42,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -110,79 +111,86 @@ class _DeleteAccountState extends State<DeleteAccount> {
                               onTap: () {
                                 showModalBottomSheet<void>(
                                   context: context,
-                                  builder: (BuildContext context) => SizedBox(
-                                    height: MediaQuery.sizeOf(context).width * .8,
-                                    child: FutureBuilder<List<Map<String, dynamic>>>(
-                                      future: _load(),
-                                      builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-                                        if (snapshot.hasData) {
-                                          final List<Map<String, dynamic>> realData = snapshot.data!;
-                                          return Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: <Widget>[
-                                              TextField(
-                                                autofocus: true,
-                                                controller: _filterController,
-                                                onChanged: (String value) => _filterKey.currentState!.setState(() {}),
-                                                style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                                decoration: InputDecoration(
-                                                  hintText: "Choose a country",
-                                                  hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                                  focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                  showDragHandle: true,
+                                  builder: (BuildContext context) => GestureDetector(
+                                    onTap: () => FocusScope.of(context).unfocus(),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(16),
+                                      height: MediaQuery.sizeOf(context).width,
+                                      child: FutureBuilder<List<Map<String, dynamic>>>(
+                                        future: _load(),
+                                        builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                                          if (snapshot.hasData) {
+                                            final List<Map<String, dynamic>> realData = snapshot.data!;
+                                            return Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                TextField(
+                                                  autofocus: true,
+                                                  controller: _filterController,
+                                                  onChanged: (String value) => _filterKey.currentState!.setState(() {}),
+                                                  style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                                  decoration: InputDecoration(
+                                                    hintText: "Choose a country",
+                                                    hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                                    focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                                  ),
                                                 ),
-                                              ),
-                                              const SizedBox(height: 10),
-                                              StatefulBuilder(
-                                                key: _filterKey,
-                                                builder: (BuildContext context, void Function(void Function()) _) {
-                                                  final List<Map<String, dynamic>> filteredData = realData
-                                                      .where(
-                                                        (Map<String, dynamic> element) =>
-                                                            element["english_name"].toLowerCase().contains(
-                                                                  _filterController.text.trim().toLowerCase(),
-                                                                ) ||
-                                                            element["arabic_name"].toLowerCase().contains(
-                                                                  _filterController.text.trim().toLowerCase(),
-                                                                ) ||
-                                                            element["country_code"].toLowerCase().contains(
-                                                                  _filterController.text.trim().toLowerCase(),
-                                                                ) ||
-                                                            element["phone_code"].toLowerCase().contains(
-                                                                  _filterController.text.trim().toLowerCase(),
-                                                                ),
-                                                      )
-                                                      .toList();
-                                                  return ListView.separated(
-                                                    itemBuilder: (BuildContext context, int index) => ListTile(
-                                                      onTap: () {
-                                                        _countryKey.currentState!.setState(
-                                                          () {
-                                                            _country = filteredData[index]["english_name"];
-                                                            _phoneCode = filteredData[index]["phone_code"];
+                                                const SizedBox(height: 10),
+                                                Expanded(
+                                                  child: StatefulBuilder(
+                                                    key: _filterKey,
+                                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                                      final List<Map<String, dynamic>> filteredData = realData
+                                                          .where(
+                                                            (Map<String, dynamic> element) =>
+                                                                element["english_name"].toLowerCase().contains(
+                                                                      _filterController.text.trim().toLowerCase(),
+                                                                    ) ||
+                                                                element["arabic_name"].toLowerCase().contains(
+                                                                      _filterController.text.trim().toLowerCase(),
+                                                                    ) ||
+                                                                element["country_code"].toLowerCase().contains(
+                                                                      _filterController.text.trim().toLowerCase(),
+                                                                    ) ||
+                                                                element["phone_code"].toLowerCase().contains(
+                                                                      _filterController.text.trim().toLowerCase(),
+                                                                    ),
+                                                          )
+                                                          .toList();
+                                                      return ListView.builder(
+                                                        itemBuilder: (BuildContext context, int index) => ListTile(
+                                                          onTap: () {
+                                                            _countryKey.currentState!.setState(
+                                                              () {
+                                                                _country = filteredData[index]["english_name"];
+                                                                _phoneCode = filteredData[index]["phone_code"];
+                                                              },
+                                                            );
+                                                            _phoneCodeKey
+                                                            Navigator.pop(context);
                                                           },
-                                                        );
-                                                        Navigator.pop(context);
-                                                      },
-                                                      leading: flag.Flag.fromString(filteredData[index]["country_code"]),
-                                                      title: Text(filteredData[index]["english_name"], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
-                                                      subtitle: Text(filteredData[index]["arabic_name"], style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
-                                                      trailing: Text(filteredData[index]["phone_code"], style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
-                                                    ),
-                                                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                                                    itemCount: filteredData.length,
-                                                    padding: EdgeInsets.zero,
-                                                  );
-                                                },
-                                              )
-                                            ],
-                                          );
-                                        } else if (snapshot.connectionState == ConnectionState.waiting) {
-                                          return const Wait();
-                                        } else {
-                                          return Wrong(error: snapshot.error.toString());
-                                        }
-                                      },
+                                                          leading: flag.Flag.fromString(filteredData[index]["country_code"], width: 20, height: 20),
+                                                          title: Text(filteredData[index]["english_name"], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
+                                                          subtitle: Text(filteredData[index]["arabic_name"], style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
+                                                          trailing: Text("+${filteredData[index]["phone_code"]}", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
+                                                        ),
+                                                        itemCount: filteredData.length,
+                                                        padding: EdgeInsets.zero,
+                                                      );
+                                                    },
+                                                  ),
+                                                )
+                                              ],
+                                            );
+                                          } else if (snapshot.connectionState == ConnectionState.waiting) {
+                                            return const Wait();
+                                          } else {
+                                            return Wrong(error: snapshot.error.toString());
+                                          }
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -206,13 +214,18 @@ class _DeleteAccountState extends State<DeleteAccount> {
                               children: <Widget>[
                                 SizedBox(
                                   width: 60,
-                                  child: TextField(
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      hintText: "+$_phoneCode",
-                                      hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                      focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
-                                    ),
+                                  child: StatefulBuilder(
+                                    key: _phoneCodeKey,
+                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                      return TextField(
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          hintText: "+$_phoneCode",
+                                          hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                          focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                                 const SizedBox(width: 10),
