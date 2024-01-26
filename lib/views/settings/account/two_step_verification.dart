@@ -54,7 +54,7 @@ class TwoStepVerification extends StatelessWidget {
                   child: const Text("Turn on", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
