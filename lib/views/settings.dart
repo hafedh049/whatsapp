@@ -138,7 +138,16 @@ class _SettingsState extends State<Settings> {
               const SizedBox(height: 40),
               Center(
                 child: Column(
-                  children: <Widget>[],
+                  children: <Widget>[
+                    Text("from", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: <Widget>[
+                        Icon(FontAwesome.meta_brand, size: 5, color: white.withOpacity(.6)),
+                        Text(" Meta", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
