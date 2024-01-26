@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/account/security_notifications/security_notifications.dart';
 
 import '../../../utils/shared.dart';
 
@@ -19,7 +20,7 @@ class _AccountState extends State<Account> {
       <String, dynamic>{
         "icon": FontAwesome.shield_halved_solid,
         "title": "Security notifications",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const SecurityNotifications())),
       },
       <String, dynamic>{
         "icon": FontAwesome.user_secret_solid,

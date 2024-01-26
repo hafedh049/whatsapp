@@ -53,8 +53,8 @@ class _PrivacyState extends State<Privacy> {
       "Disappearing messages": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 3,
-          "title": "Last seen and online",
-          "subtitle": "Everyone",
+          "title": "Default message timer",
+          "subtitle": "Start new chats with disappearing messages set to your timer.",
           "state": "Off",
           "callback": () {},
         },
