@@ -82,27 +82,67 @@ class _SettingsState extends State<Settings> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                const CircleAvatar(backgroundImage: AssetImage("assets/images/me.jpg"), radius: 20),
-                const SizedBox(width: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const Text("Hafedh Guenichi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: white, letterSpacing: 1.5)),
-                    const SizedBox(height: 10),
-                    Text("Busy", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
-                  ],
-                )
-                const Spacer(),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  const CircleAvatar(backgroundImage: AssetImage("assets/images/me.jpg"), radius: 30),
+                  const SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text("Hafedh Guenichi", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: white, letterSpacing: 1.5)),
+                      const SizedBox(height: 5),
+                      Text("Busy", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                    ],
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(FontAwesome.qrcode_solid, color: green, size: 25),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(FontAwesome.circle_chevron_down_solid, color: green, size: 25),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+              for (final Map<String, dynamic> item in _items) ...<Widget>[
+                GestureDetector(
+                  onTap: item["callback"],
+                  child: Row(
+                    children: <Widget>[
+                      Icon(item["icon"], color: white.withOpacity(.6), size: 20),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                          if (item["subtitle"].isNotEmpty) ...<Widget>[
+                            const SizedBox(height: 10),
+                            Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                          ],
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
               ],
-            ),
-          ],
+              const SizedBox(height: 40),
+              Center(
+                child: Column(
+                  children: <Widget>[],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
