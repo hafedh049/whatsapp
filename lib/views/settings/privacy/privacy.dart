@@ -11,7 +11,49 @@ class Privacy extends StatefulWidget {
 }
 
 class _PrivacyState extends State<Privacy> {
-  bool _privacyCheckUpState = false;
+  bool _privacyState = true;
+  late final Map<String, List<Map<String, dynamic>>> _privacyGroups;
+
+  @override
+  void initState() {
+    _privacyGroups = <String, List<Map<String, dynamic>>>{
+      "Who can see my personal info": <Map<String, dynamic>>[
+        <String, dynamic>{
+          "type": 1,
+          "title": "Last seen and online",
+          "subtitle": "Everyone",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Profile photo",
+          "subtitle": "Everyone",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "About",
+          "subtitle": "Everyone",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Status",
+          "subtitle": "My contacts",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 2,
+          "title": "Status",
+          "subtitle": "My contacts",
+          "radio_state": true,
+          "callback": () {},
+        },
+      ],
+    };
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,42 +65,48 @@ class _PrivacyState extends State<Privacy> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(16),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: green.withOpacity(.1)),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const Icon(FontAwesome.lock_solid, size: 25, color: green),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(height: 5),
-                        const Text("Privacy checkup", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
-                        GestureDetector(
-                          onTap: () {},
-                          child: RichText(
-                            text: const TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(text: "Control your privacy and choose the right settings for you. ", style: TextStyle(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                TextSpan(text: "Start checkup", style: TextStyle(fontSize: 14, color: Colors.green, fontWeight: FontWeight.bold)),
-                              ],
+            StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) _) {
+                return !_privacyState
+                    ? const SizedBox()
+                    : Container(
+                        padding: const EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: green.withOpacity(.05)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const Icon(FontAwesome.lock_solid, size: 25, color: green),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const Text("Privacy checkup", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                                  const SizedBox(height: 5),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: RichText(
+                                      text: const TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(text: "Control your privacy and choose the right settings for you. ", style: TextStyle(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                          TextSpan(text: "Start checkup", style: TextStyle(fontSize: 14, color: Colors.green, fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
+                            GestureDetector(
+                              onTap: () => _(() => _privacyState = false),
+                              child: Icon(FontAwesome.x_solid, size: 15, color: white.withOpacity(.6)),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(FontAwesome.x_solid, size: 15, color: white.withOpacity(.6)),
-                  )
-                ],
-              ),
+                      );
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(24),
