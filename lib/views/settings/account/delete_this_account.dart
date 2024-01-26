@@ -27,7 +27,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Icon(FontAwesome.signal_solid, color: Colors.red, size: 15),
+                const Icon(FontAwesome.triangle_exclamation_solid, color: Colors.red, size: 15),
                 const SizedBox(width: 20),
                 Expanded(
                   child: Column(
@@ -52,7 +52,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Icon(FontAwesome.signal_solid, color: white.withOpacity(.6), size: 15),
+                Icon(FontAwesome.door_open_solid, color: white.withOpacity(.6), size: 15),
                 const SizedBox(width: 20),
                 Expanded(
                   child: Column(
@@ -61,16 +61,16 @@ class _DeleteAccountState extends State<DeleteAccount> {
                     children: <Widget>[
                       const Text("Change number instead ?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white)),
                       const SizedBox(height: 20),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: green),
-                            child: const Text("Change number", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
-                          ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: green),
+                          child: const Text("Change number", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      Text("To delete your account, confirm your country code and enter your phone number..", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
                       const SizedBox(height: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,6 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
                         ],
                       ),
-                      const SizedBox(height: 30),
                       const SizedBox(height: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,19 +87,18 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           Text("Phone", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 5),
                           InternationalPhoneNumberInput(
+                            hintText: "Phone number",
                             onInputChanged: (PhoneNumber value) {},
                           ),
                         ],
                       ),
                       const SizedBox(height: 20),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.red),
-                            child: const Text("Delete Account", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
-                          ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.red),
+                          child: const Text("Delete Account", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
                         ),
                       ),
                     ],

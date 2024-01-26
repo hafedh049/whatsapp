@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/views/settings/account/change_number.dart';
+import 'package:whatsapp/views/settings/account/delete_this_account.dart';
 import 'package:whatsapp/views/settings/account/email_address.dart';
 import 'package:whatsapp/views/settings/account/passkeys.dart';
 import 'package:whatsapp/views/settings/account/request_account_info.dart';
@@ -60,7 +61,7 @@ class _AccountState extends State<Account> {
       <String, dynamic>{
         "icon": FontAwesome.bucket_solid,
         "title": "Delete account",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const DeleteAccount())),
       },
     ];
     super.initState();
