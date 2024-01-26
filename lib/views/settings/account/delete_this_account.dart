@@ -17,8 +17,6 @@ class _DeleteAccountState extends State<DeleteAccount> {
   final TextEditingController _phoneNumberController = TextEditingController();
   String _country = "Tunisia";
 
-  final StreamSubscription _countryListener = StreamController().;
-
   @override
   void dispose() {
     _countryCodeController.dispose();
@@ -94,7 +92,17 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           children: <Widget>[
                             Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 5),
-                            const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
+                            GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet<void>(
+                                    context: context,
+                                    builder: (BuildContext context) => SizedBox(
+                                      height: MediaQuery.sizeOf(context).width * .4,
+                                      child: FutureBuilder(future: , builder: (BuildContext context,AsyncSnapshot snapshot) => ,),
+                                    ),
+                                  );
+                                },
+                                child: const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500))),
                           ],
                         ),
                         const SizedBox(height: 20),
