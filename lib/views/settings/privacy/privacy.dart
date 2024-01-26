@@ -161,12 +161,28 @@ class _PrivacyState extends State<Privacy> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  for (MapEntry<String, List<Map<String, dynamic>>> group in _privacyGroups.entries)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[],
-                    ),
+                  for (final MapEntry<String, List<Map<String, dynamic>>> group in _privacyGroups.entries) ...<Widget>[
+                    Text(group.key, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                    const SizedBox(height: 20),
+                    for (Map<String, dynamic> item in group.value) ...<Widget>[
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: white)),
+                                const SizedBox(height: 5),
+                                Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ],
                 ],
               ),
             )
