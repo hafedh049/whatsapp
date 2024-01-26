@@ -79,8 +79,8 @@ class _AccountState extends State<Account> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    leading: const CircleAvatar(radius: 20, backgroundImage: AssetImage("assets/images/me.jpg")),
-                    title: const Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                    leading: CircleAvatar(radius: 20, backgroundColor: white.withOpacity(.1), child: const Icon(FontAwesome.plus_solid, color: white, size: 20)),
+                    title: const Text("Add account", style: TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
