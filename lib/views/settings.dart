@@ -85,7 +85,24 @@ class _SettingsState extends State<Settings> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[],
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                const CircleAvatar(backgroundImage: AssetImage("assets/images/me.jpg"), radius: 20),
+                const SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const Text("Hafedh Guenichi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: white, letterSpacing: 1.5)),
+                    const SizedBox(height: 10),
+                    Text("Busy", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                  ],
+                )
+                const Spacer(),
+              ],
+            ),
+          ],
         ),
       ),
     );
