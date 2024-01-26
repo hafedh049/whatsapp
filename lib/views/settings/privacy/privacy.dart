@@ -44,9 +44,56 @@ class _PrivacyState extends State<Privacy> {
         },
         <String, dynamic>{
           "type": 2,
-          "title": "Status",
-          "subtitle": "My contacts",
+          "title": "Read receipts",
+          "subtitle": "If turned off, you won't send or receive Read receipts. Read receipts are always sent for group chats.",
           "radio_state": true,
+          "callback": () {},
+        },
+      ],
+      "Disappearing messages": <Map<String, dynamic>>[
+        <String, dynamic>{
+          "type": 3,
+          "title": "Last seen and online",
+          "subtitle": "Everyone",
+          "state": "Off",
+          "callback": () {},
+        },
+      ],
+      "Others": <Map<String, dynamic>>[
+        <String, dynamic>{
+          "type": 1,
+          "title": "Groups",
+          "subtitle": "Everyone",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Live location",
+          "subtitle": "None",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Calls",
+          "subtitle": "Silence unknown callers",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Blocked contacts",
+          "subtitle": "None",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Fingerprint lock",
+          "subtitle": "Disabled",
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Advanced",
+          "subtitle": "Protect IP address in calls",
           "callback": () {},
         },
       ],
@@ -113,7 +160,14 @@ class _PrivacyState extends State<Privacy> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
-                children: <Widget>[],
+                children: <Widget>[
+                  for (MapEntry<String, List<Map<String, dynamic>>> group in _privacyGroups.entries)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[],
+                    ),
+                ],
               ),
             )
           ],
