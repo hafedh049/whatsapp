@@ -40,12 +40,15 @@ class _EmailAddressState extends State<EmailAddress> {
               TextField(
                 autofocus: true,
                 controller: _emailController,
-                onChanged: (String value) => _buttonKey.currentState!.setState(() {}),
+                onChanged: (String value) {
+                  if (_emailController.text.trim().length <= 1) {
+                    _buttonKey.currentState!.setState(() {});
+                  }
+                },
                 style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
                 decoration: InputDecoration(
                   hintText: "E-mail",
                   hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                  contentPadding: const EdgeInsets.all(8),
                   focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
                 ),
               ),
