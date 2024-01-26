@@ -33,6 +33,7 @@ dependencies:
   http: ^1.2.0
   voice_message_package: ^2.1.4
   selectable_autolink_text: ^2.6.0
+  intl_phone_number_input: ^0.7.4
 
 dev_dependencies:
   flutter_test:

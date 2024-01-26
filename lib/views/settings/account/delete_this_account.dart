@@ -84,9 +84,9 @@ class _DeleteAccountState extends State<DeleteAccount> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
+                          Text("Phone", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 5),
-                          const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500)),
+
                         ],
                       ),
                     ],
