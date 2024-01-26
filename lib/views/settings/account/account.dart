@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:whatsapp/views/settings/account/security_notifications/security_notifications.dart';
+import 'package:whatsapp/views/settings/account/security_notifications.dart';
 
 import '../../../utils/shared.dart';
 
