@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 import '../../../utils/shared.dart';
@@ -178,10 +179,29 @@ class _PrivacyState extends State<Privacy> {
                               ],
                             ),
                           ),
+                          if (item["type"] != 1) const SizedBox(width: 10),
+                          item["type"] == 3
+                              ? Text(item["state"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6)))
+                              : item["type"] == 2
+                                  ? StatefulBuilder(
+                                      builder: (BuildContext context, void Function(void Function()) _) {
+                                        return Switch(
+                                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                          value: item["radio_state"],
+                                          activeColor: green,
+                                          activeTrackColor: white.withOpacity(.1),
+                                          inactiveThumbColor: white.withOpacity(.6),
+                                          onChanged: (bool value) => _(() => item["radio_state"] = value),
+                                        );
+                                      },
+                                    )
+                                  : const SizedBox(),
                         ],
                       ),
                       const SizedBox(height: 20),
                     ],
+                    Divider(height: .5, thickness: .5, color: white.withOpacity(.6)),
+                    const SizedBox(height: 20),
                   ],
                 ],
               ),
