@@ -56,7 +56,37 @@ class _AccountState extends State<Account> {
       <String, dynamic>{
         "icon": Bootstrap.person_plus_fill,
         "title": "Add account",
-        "callback": () {},
+        "callback": () {
+          showModalBottomSheet<void>(
+            context: context,
+            showDragHandle: true,
+            builder: (BuildContext context) => SizedBox(
+              height: MediaQuery.sizeOf(context).width * .4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    leading: const CircleAvatar(radius: 20, backgroundImage: AssetImage("assets/images/me.jpg")),
+                    title: const Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                    subtitle: Text("+216 28 056 362", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
+                    trailing: IconButton(onPressed: () {}, icon: const Icon(FontAwesome.circle_check_solid, color: green, size: 20)),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    leading: const CircleAvatar(radius: 20, backgroundImage: AssetImage("assets/images/me.jpg")),
+                    title: const Text("Hafedh Guenichi", style: TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       },
       <String, dynamic>{
         "icon": FontAwesome.bucket_solid,

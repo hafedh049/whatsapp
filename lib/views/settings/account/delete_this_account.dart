@@ -128,7 +128,6 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
                                                 TextField(
-                                                  autofocus: true,
                                                   controller: _filterController,
                                                   onChanged: (String value) => _filterKey.currentState!.setState(() {}),
                                                   style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
@@ -206,40 +205,40 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           children: <Widget>[
                             Text("Phone", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 5),
-                            Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 60,
-                                  child: StatefulBuilder(
-                                    key: _phoneCodeKey,
-                                    builder: (BuildContext context, void Function(void Function()) _) {
-                                      return TextField(
+                            StatefulBuilder(
+                              key: _phoneCodeKey,
+                              builder: (BuildContext context, void Function(void Function()) _) {
+                                return Row(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      width: 60,
+                                      child: TextField(
                                         readOnly: true,
                                         decoration: InputDecoration(
-                                          hintText: "+$_phoneCode",
+                                          hintText: "+ $_phoneCode",
                                           hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
                                           focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
                                         ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: InternationalPhoneNumberInput(
-                                    showSelector: false,
-                                    selectorConfig: SelectorConfig(),
-                                    onInputChanged: null,
-                                    textFieldController: _phoneNumberController,
-                                    inputBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
-                                    hintText: "Phone number",
-                                    selectorButtonOnErrorPadding: 0,
-                                    errorMessage: "",
-                                    cursorColor: green,
-                                    textStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ],
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: InternationalPhoneNumberInput(
+                                        showSelector: false,
+                                        onInputChanged: null,
+                                        initialValue: PhoneNumber(dialCode: _phoneCode),
+                                        textFieldController: _phoneNumberController,
+                                        inputBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                        hintText: "Phone number",
+                                        selectorButtonOnErrorPadding: 0,
+                                        errorMessage: "",
+                                        cursorColor: green,
+                                        textStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                           ],
                         ),
