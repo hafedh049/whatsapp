@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/account/email_address.dart';
 import 'package:whatsapp/views/settings/account/passkeys.dart';
 import 'package:whatsapp/views/settings/account/security_notifications.dart';
 
@@ -31,7 +32,7 @@ class _AccountState extends State<Account> {
       <String, dynamic>{
         "icon": FontAwesome.envelope_solid,
         "title": "E-mail address",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const EmailAddress())),
       },
       <String, dynamic>{
         "icon": FontAwesome.rectangle_list_solid,

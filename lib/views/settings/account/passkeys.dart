@@ -37,12 +37,15 @@ class PassKeys extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              alignment: Alignment.center,
-              width: MediaQuery.sizeOf(context).width,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: green),
-              child: const Text("Create a passkey", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                alignment: Alignment.center,
+                width: MediaQuery.sizeOf(context).width,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: green),
+                child: const Text("Create a passkey", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
+              ),
             ),
           ],
         ),
