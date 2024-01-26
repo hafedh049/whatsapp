@@ -228,6 +228,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                 Expanded(
                                   child: InternationalPhoneNumberInput(
                                     showSelector: false,
+                                    selectorConfig: SelectorConfig(),
                                     onInputChanged: null,
                                     textFieldController: _phoneNumberController,
                                     inputBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
