@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../../utils/shared.dart';
 
@@ -86,8 +87,21 @@ class _DeleteAccountState extends State<DeleteAccount> {
                         children: <Widget>[
                           Text("Phone", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 5),
-
+                          InternationalPhoneNumberInput(
+                            onInputChanged: (PhoneNumber value) {},
+                          ),
                         ],
+                      ),
+                      const SizedBox(height: 20),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.red),
+                            child: const Text("Delete Account", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
+                          ),
+                        ),
                       ),
                     ],
                   ),
