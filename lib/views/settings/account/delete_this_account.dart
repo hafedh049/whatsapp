@@ -5,6 +5,8 @@ import 'package:flag/flag.dart' as flag;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/miscellaneous/wait.dart';
+import 'package:whatsapp/views/miscellaneous/wrong.dart';
 
 import '../../../utils/shared.dart';
 
@@ -21,10 +23,10 @@ class _DeleteAccountState extends State<DeleteAccount> {
   final TextEditingController _filterController = TextEditingController();
 
   final GlobalKey<State> _filterKey = GlobalKey<State>();
-final GlobalKey<State> _countryKey = GlobalKey<State>();
-
+  final GlobalKey<State> _countryKey = GlobalKey<State>();
 
   String _country = "Tunisia";
+  String _phoneCode = "216";
 
   Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/countries.json"));
 
@@ -105,69 +107,93 @@ final GlobalKey<State> _countryKey = GlobalKey<State>();
                             Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 5),
                             GestureDetector(
-                                onTap: () {
-                                  showModalBottomSheet<void>(
-                                    context: context,
-                                    builder: (BuildContext context) => SizedBox(
-                                      height: MediaQuery.sizeOf(context).width * .4,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          TextField(
-                                            autofocus: true,
-                                            controller: _filterController,
-                                            onChanged: (String value) =>,
-                                            style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                            decoration: InputDecoration(
-                                              hintText: "Choose a country",
-                                              hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                              focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 20),
-                                          Expanded(
-                                            child: FutureBuilder<List<Map<String, dynamic>>>(
-                                              future: _load(),
-                                              builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-                                                if (snapshot.hasData) {
-                                                  final List<Map<String, dynamic>> realData = snapshot.data!;
-                                                  return StatefulBuilder(
-                                                    key: _filterKey,
-                                                    builder: (BuildContext context, void Function(void Function()) _) {
-                                                       final List<Map<String, dynamic>> filteredData = realData.where((Map<String,dynamic>element) => element["english_name"].toLowerCase().contains(_filterController.text.trim().toLowerCase()) ).toList();
-                                                      return ListView.separated(
-                                                        itemBuilder: (BuildContext context, int index) => ListTile(onTap: () {
-                                                          _
-                                                          Navigator.pop(context);
-                                                        },
-                                                          leading: flag.Flag.fromString(filteredData[index]["country_code"]),
-                                                          title: Text(filteredData[index]["english_name"], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
-                                                          subtitle: Text(filteredData[index]["arabic_name"], style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
-                                                          trailing: Text(filteredData[index]["phone_code"], style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
-                                                        ),
-                                                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                                                        itemCount: filteredData.length,
-                                                        padding: EdgeInsets.zero,
-                                                      );
-                                                    }
+                              onTap: () {
+                                showModalBottomSheet<void>(
+                                  context: context,
+                                  builder: (BuildContext context) => SizedBox(
+                                    height: MediaQuery.sizeOf(context).width * .8,
+                                    child: FutureBuilder<List<Map<String, dynamic>>>(
+                                      future: _load(),
+                                      builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                                        if (snapshot.hasData) {
+                                          final List<Map<String, dynamic>> realData = snapshot.data!;
+                                          return Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              TextField(
+                                                autofocus: true,
+                                                controller: _filterController,
+                                                onChanged: (String value) => _filterKey.currentState!.setState(() {}),
+                                                style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                                decoration: InputDecoration(
+                                                  hintText: "Choose a country",
+                                                  hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                                  focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              StatefulBuilder(
+                                                key: _filterKey,
+                                                builder: (BuildContext context, void Function(void Function()) _) {
+                                                  final List<Map<String, dynamic>> filteredData = realData
+                                                      .where(
+                                                        (Map<String, dynamic> element) =>
+                                                            element["english_name"].toLowerCase().contains(
+                                                                  _filterController.text.trim().toLowerCase(),
+                                                                ) ||
+                                                            element["arabic_name"].toLowerCase().contains(
+                                                                  _filterController.text.trim().toLowerCase(),
+                                                                ) ||
+                                                            element["country_code"].toLowerCase().contains(
+                                                                  _filterController.text.trim().toLowerCase(),
+                                                                ) ||
+                                                            element["phone_code"].toLowerCase().contains(
+                                                                  _filterController.text.trim().toLowerCase(),
+                                                                ),
+                                                      )
+                                                      .toList();
+                                                  return ListView.separated(
+                                                    itemBuilder: (BuildContext context, int index) => ListTile(
+                                                      onTap: () {
+                                                        _countryKey.currentState!.setState(
+                                                          () {
+                                                            _country = filteredData[index]["english_name"];
+                                                            _phoneCode = filteredData[index]["phone_code"];
+                                                          },
+                                                        );
+                                                        Navigator.pop(context);
+                                                      },
+                                                      leading: flag.Flag.fromString(filteredData[index]["country_code"]),
+                                                      title: Text(filteredData[index]["english_name"], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
+                                                      subtitle: Text(filteredData[index]["arabic_name"], style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
+                                                      trailing: Text(filteredData[index]["phone_code"], style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
+                                                    ),
+                                                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                                                    itemCount: filteredData.length,
+                                                    padding: EdgeInsets.zero,
                                                   );
-                                                } else {
-                                                  return const CircularProgressIndicator(color: green);
-                                                }
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                                },
+                                              )
+                                            ],
+                                          );
+                                        } else if (snapshot.connectionState == ConnectionState.waiting) {
+                                          return const Wait();
+                                        } else {
+                                          return Wrong(error: snapshot.error.toString());
+                                        }
+                                      },
                                     ),
-                                  );
+                                  ),
+                                );
+                              },
+                              child: StatefulBuilder(
+                                key: _countryKey,
+                                builder: (BuildContext context, void Function(void Function()) _) {
+                                  return Text(_country, style: const TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500));
                                 },
-                                child:  StatefulBuilder(
-                                                    key: _countryKey,
-                                                    builder: (BuildContext context, void Function(void Function()) _) {
-                                                       return  const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500));
-                                  }
-                                ),),
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 20),
@@ -178,15 +204,15 @@ final GlobalKey<State> _countryKey = GlobalKey<State>();
                             const SizedBox(height: 5),
                             Row(
                               children: <Widget>[
-                                TextField(
-                                  autofocus: true,
-                                  controller: _countryCodeController,
-                                  onChanged: (String value) {},
-                                  style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                  decoration: InputDecoration(
-                                    hintText: "+216",
-                                    hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
-                                    focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                SizedBox(
+                                  width: 60,
+                                  child: TextField(
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+                                      hintText: "+$_phoneCode",
+                                      hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                      focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
