@@ -25,7 +25,7 @@ class _SettingsState extends State<Settings> {
       "callback": () {},
     },
     <String, dynamic>{
-      "icon": FontAwesome.aviato_brand,
+      "icon": FontAwesome.face_grimace_solid,
       "title": "Avatar",
       "subtitle": "Create, edit, profile photo",
       "callback": () {},
@@ -140,11 +140,13 @@ class _SettingsState extends State<Settings> {
                 child: Column(
                   children: <Widget>[
                     Text("from", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
-                    const SizedBox(height: 10),
-                    Row(
+                    const SizedBox(height: 5),
+                    const Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Icon(FontAwesome.meta_brand, size: 5, color: white.withOpacity(.6)),
-                        Text(" Meta", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                        Icon(FontAwesome.meta_brand, size: 12, color: white),
+                        SizedBox(width: 5),
+                        Text("Meta", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       ],
                     ),
                   ],
