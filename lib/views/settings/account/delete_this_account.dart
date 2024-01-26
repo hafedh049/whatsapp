@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../../utils/shared.dart';
 
@@ -12,11 +11,14 @@ class DeleteAccount extends StatefulWidget {
 }
 
 class _DeleteAccountState extends State<DeleteAccount> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _countryCodeController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  String _country = "Tunisia";
 
   @override
   void dispose() {
-    _phoneController.dispose();
+    _countryCodeController.dispose();
+    _phoneNumberController.dispose();
     super.dispose();
   }
 
@@ -97,11 +99,34 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           children: <Widget>[
                             Text("Phone", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 5),
-                            InternationalPhoneNumberInput(
-                              hintText: "Phone number",
-                              selectorConfig: const SelectorConfig(leadingPadding: 0, selectorType: PhoneInputSelectorType.BOTTOM_SHEET, useBottomSheetSafeArea: true),
-                              textFieldController: _phoneController,
-                              onInputChanged: (PhoneNumber value) {},
+                            Row(
+                              children: <Widget>[
+                                TextField(
+                                  autofocus: true,
+                                  controller: _countryCodeController,
+                                  onChanged: (String value) {},
+                                  style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                  decoration: InputDecoration(
+                                    hintText: "+216",
+                                    hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                    focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: TextField(
+                                    autofocus: true,
+                                    controller: _phoneNumberController,
+                                    onChanged: (String value) {},
+                                    style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                    decoration: InputDecoration(
+                                      hintText: "Phone number",
+                                      hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                      focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
