@@ -18,6 +18,12 @@ class DeleteAccount extends StatefulWidget {
 class _DeleteAccountState extends State<DeleteAccount> {
   final TextEditingController _countryCodeController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _filterController = TextEditingController();
+
+  final GlobalKey<State> _filterKey = GlobalKey<State>();
+final GlobalKey<State> _countryKey = GlobalKey<State>();
+
+
   String _country = "Tunisia";
 
   Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/countries.json"));
@@ -26,6 +32,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
   void dispose() {
     _countryCodeController.dispose();
     _phoneNumberController.dispose();
+    _filterController.dispose();
     super.dispose();
   }
 
@@ -106,23 +113,43 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
+                                          TextField(
+                                            autofocus: true,
+                                            controller: _filterController,
+                                            onChanged: (String value) =>,
+                                            style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                            decoration: InputDecoration(
+                                              hintText: "Choose a country",
+                                              hintStyle: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
+                                              focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: green)),
+                                            ),
+                                          ),
                                           const SizedBox(height: 20),
                                           Expanded(
                                             child: FutureBuilder<List<Map<String, dynamic>>>(
                                               future: _load(),
                                               builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                                                 if (snapshot.hasData) {
-                                                  final List<Map<String, dynamic>> data = snapshot.data!;
-                                                  return ListView.separated(
-                                                    itemBuilder: (BuildContext context, int index) => ListTile(
-                                                      leading: flag.Flag.fromString(data[index]["country_code"]),
-                                                      title: Text(data[index][""], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
-                                                      subtitle: Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
-                                                      trailing: Text("Country", style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
-                                                    ),
-                                                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                                                    itemCount: data.length,
-                                                    padding: EdgeInsets.zero,
+                                                  final List<Map<String, dynamic>> realData = snapshot.data!;
+                                                  return StatefulBuilder(
+                                                    key: _filterKey,
+                                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                                       final List<Map<String, dynamic>> filteredData = realData.where((Map<String,dynamic>element) => element["english_name"].toLowerCase().contains(_filterController.text.trim().toLowerCase()) ).toList();
+                                                      return ListView.separated(
+                                                        itemBuilder: (BuildContext context, int index) => ListTile(onTap: () {
+                                                          _
+                                                          Navigator.pop(context);
+                                                        },
+                                                          leading: flag.Flag.fromString(filteredData[index]["country_code"]),
+                                                          title: Text(filteredData[index]["english_name"], style: const TextStyle(color: white, fontSize: 12, fontWeight: FontWeight.w500)),
+                                                          subtitle: Text(filteredData[index]["arabic_name"], style: TextStyle(color: white.withOpacity(.6), fontSize: 10, fontWeight: FontWeight.w500)),
+                                                          trailing: Text(filteredData[index]["phone_code"], style: TextStyle(color: white.withOpacity(.6), fontSize: 12, fontWeight: FontWeight.w500)),
+                                                        ),
+                                                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                                                        itemCount: filteredData.length,
+                                                        padding: EdgeInsets.zero,
+                                                      );
+                                                    }
                                                   );
                                                 } else {
                                                   return const CircularProgressIndicator(color: green);
@@ -135,7 +162,12 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                     ),
                                   );
                                 },
-                                child: const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500))),
+                                child:  StatefulBuilder(
+                                                    key: _countryKey,
+                                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                                       return  const Text("Tunisia", style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.w500));
+                                  }
+                                ),),
                           ],
                         ),
                         const SizedBox(height: 20),
