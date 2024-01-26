@@ -4,7 +4,7 @@ import 'package:whatsapp/utils/shared.dart';
 import 'package:whatsapp/views/call/calls.dart';
 import 'package:whatsapp/views/chat/chats.dart';
 import 'package:whatsapp/views/community/community.dart';
-import 'package:whatsapp/views/settings.dart';
+import 'package:whatsapp/views/settings/settings.dart';
 import 'package:whatsapp/views/updates.dart';
 
 class Home extends StatefulWidget {

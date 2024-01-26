@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 
-import '../utils/shared.dart';
+import '../../utils/shared.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -11,62 +11,69 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  final List<Map<String, dynamic>> _items = <Map<String, dynamic>>[
-    <String, dynamic>{
-      "icon": FontAwesome.key_solid,
-      "title": "Account",
-      "subtitle": "Security notifications, change number",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.lock_solid,
-      "title": "Privacy",
-      "subtitle": "Block contacts, disappearing messages",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.face_grimace_solid,
-      "title": "Avatar",
-      "subtitle": "Create, edit, profile photo",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.message,
-      "title": "Chats",
-      "subtitle": "Theme, wallpapers, chat history",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.bell,
-      "title": "Notifications",
-      "subtitle": "Message, group & call tones",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.bars_progress_solid,
-      "title": "Storage and data",
-      "subtitle": "Network usage, auto-download",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": Bootstrap.balloon,
-      "title": "App language",
-      "subtitle": "English (device's language)",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.question_solid,
-      "title": "Help",
-      "subtitle": "Help center, contact us, privacy policy",
-      "callback": () {},
-    },
-    <String, dynamic>{
-      "icon": FontAwesome.people_group_solid,
-      "title": "Invite a friend",
-      "subtitle": "",
-      "callback": () {},
-    },
-  ];
+  late final List<Map<String, dynamic>> _items;
+
+  @override
+  void initState() {
+    _items = <Map<String, dynamic>>[
+      <String, dynamic>{
+        "icon": FontAwesome.key_solid,
+        "title": "Account",
+        "subtitle": "Security notifications, change number",
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => )),
+      },
+      <String, dynamic>{
+        "icon": FontAwesome.lock_solid,
+        "title": "Privacy",
+        "subtitle": "Block contacts, disappearing messages",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": FontAwesome.face_grimace_solid,
+        "title": "Avatar",
+        "subtitle": "Create, edit, profile photo",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": FontAwesome.message_solid,
+        "title": "Chats",
+        "subtitle": "Theme, wallpapers, chat history",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": Bootstrap.bell_fill,
+        "title": "Notifications",
+        "subtitle": "Message, group & call tones",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": FontAwesome.bars_progress_solid,
+        "title": "Storage and data",
+        "subtitle": "Network usage, auto-download",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": Bootstrap.globe,
+        "title": "App language",
+        "subtitle": "English (device's language)",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": FontAwesome.circle_question_solid,
+        "title": "Help",
+        "subtitle": "Help center, contact us, privacy policy",
+        "callback": () {},
+      },
+      <String, dynamic>{
+        "icon": Bootstrap.people_fill,
+        "title": "Invite a friend",
+        "subtitle": "",
+        "callback": () {},
+      },
+    ];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +83,7 @@ class _SettingsState extends State<Settings> {
         actions: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: const Icon(FontAwesome.searchengin_brand, size: 20, color: white),
+            icon: const Icon(FontAwesome.magnifying_glass_solid, size: 20, color: white),
           ),
         ],
       ),
@@ -125,7 +132,7 @@ class _SettingsState extends State<Settings> {
                         children: <Widget>[
                           Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
                           if (item["subtitle"].isNotEmpty) ...<Widget>[
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 5),
                             Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
                           ],
                         ],
@@ -135,7 +142,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 const SizedBox(height: 30),
               ],
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               Center(
                 child: Column(
                   children: <Widget>[
@@ -146,7 +153,7 @@ class _SettingsState extends State<Settings> {
                       children: <Widget>[
                         Icon(FontAwesome.meta_brand, size: 12, color: white),
                         SizedBox(width: 5),
-                        Text("Meta", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                        Text("Meta", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: white)),
                       ],
                     ),
                   ],
