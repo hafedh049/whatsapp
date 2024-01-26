@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/account/passkeys.dart';
 import 'package:whatsapp/views/settings/account/security_notifications.dart';
 
 import '../../../utils/shared.dart';
@@ -25,7 +26,7 @@ class _AccountState extends State<Account> {
       <String, dynamic>{
         "icon": FontAwesome.user_secret_solid,
         "title": "Passkeys",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const PassKeys())),
       },
       <String, dynamic>{
         "icon": FontAwesome.envelope_solid,
