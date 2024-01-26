@@ -5,6 +5,7 @@ import 'package:flag/flag.dart' as flag;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:whatsapp/views/miscellaneous/wait.dart';
 import 'package:whatsapp/views/miscellaneous/wrong.dart';
 
@@ -162,13 +163,8 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                                       return ListView.builder(
                                                         itemBuilder: (BuildContext context, int index) => ListTile(
                                                           onTap: () {
-                                                            _countryKey.currentState!.setState(
-                                                              () {
-                                                                _country = filteredData[index]["english_name"];
-                                                                _phoneCode = filteredData[index]["phone_code"];
-                                                              },
-                                                            );
-                                                            _phoneCodeKey
+                                                            _countryKey.currentState!.setState(() => _country = filteredData[index]["english_name"]);
+                                                            _phoneCodeKey.currentState!.setState(() => _phoneCode = filteredData[index]["phone_code"]);
                                                             Navigator.pop(context);
                                                           },
                                                           leading: flag.Flag.fromString(filteredData[index]["country_code"], width: 20, height: 20),
@@ -193,7 +189,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                       ),
                                     ),
                                   ),
-                                );
+                                ).then((void value) => _filterController.clear());
                               },
                               child: StatefulBuilder(
                                 key: _countryKey,
@@ -229,11 +225,11 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                   ),
                                 ),
                                 const SizedBox(width: 10),
+                                InternationalPhoneNumberInput(onInputChanged: null),
                                 Expanded(
                                   child: TextField(
                                     autofocus: true,
                                     controller: _phoneNumberController,
-                                    onChanged: (String value) {},
                                     style: TextStyle(color: white.withOpacity(.6), fontSize: 16, fontWeight: FontWeight.w500),
                                     decoration: InputDecoration(
                                       hintText: "Phone number",
