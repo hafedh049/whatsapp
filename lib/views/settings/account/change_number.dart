@@ -20,37 +20,34 @@ class ChangeNumber extends StatelessWidget {
           children: <Widget>[
             Center(
               child: CircleAvatar(
-                radius: 60,
+                radius: 65,
                 backgroundColor: green.withOpacity(.05),
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Icon(FontAwesome.sim_card_solid, size: 25, color: green),
+                    Icon(FontAwesome.sim_card_solid, size: 45, color: green),
                     SizedBox(width: 1),
-                    Icon(FontAwesome.ellipsis_solid, size: 15, color: green),
+                    Icon(FontAwesome.ellipsis_solid, size: 25, color: green),
                     SizedBox(width: 1),
-                    Icon(FontAwesome.sim_card_solid, size: 25, color: green),
+                    Icon(FontAwesome.sim_card_solid, size: 45, color: green),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 30),
             const Text(
-              "For extra security, turn on two-step verification, which will require a PIN when registering your phone number with Whatsapp again",
+              "Changing you phone number will migrate you account info, groups & settings.",
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Text(
-              "For extra security, turn on two-step verification, which will require a PIN when registering your phone number with Whatsapp again",
+              "Before proceeding, please confirm that you are able to receive SMS or calls at your new number.",
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6)),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Text(
-              "For extra security, turn on two-step verification, which will require a PIN when registering your phone number with Whatsapp again",
+              "If you have both a new phone & a new number, first change you number on your old phone.",
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6)),
-              textAlign: TextAlign.center,
             ),
             const Spacer(),
             Center(
@@ -59,7 +56,7 @@ class ChangeNumber extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: green),
-                  child: const Text("Turn on", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
+                  child: const Text("Next", style: TextStyle(color: black, fontSize: 12, fontWeight: FontWeight.w500)),
                 ),
               ),
             )
