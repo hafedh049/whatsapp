@@ -5,6 +5,7 @@ import 'package:whatsapp/views/settings/avatar/avatar.dart';
 import 'package:whatsapp/views/settings/chats/chats_settings.dart';
 import 'package:whatsapp/views/settings/notifications/notifications.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
+import 'package:whatsapp/views/settings/storage/storage.dart';
 
 import '../../utils/shared.dart';
 
@@ -55,7 +56,7 @@ class _SettingsState extends State<Settings> {
         "icon": FontAwesome.bars_progress_solid,
         "title": "Storage and data",
         "subtitle": "Network usage, auto-download",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Storage())),
       },
       <String, dynamic>{
         "icon": Bootstrap.globe,

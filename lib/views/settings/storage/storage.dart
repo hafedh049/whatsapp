@@ -30,7 +30,7 @@ class _StorageState extends State<Storage> {
           "type": 1,
           "title": "Network usage",
           "subtitle": "1.4 GB ∘ 2.6 GB received",
-          "icon": FontAwesome.folder_solid,
+          "icon": FontAwesome.clock_rotate_left_solid,
           "callback": () {},
         },
         <String, dynamic>{
@@ -50,20 +50,20 @@ class _StorageState extends State<Storage> {
       "Media auto-download ?? Voice messages are always automatically downloaded": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
-          "title": "Notification tone",
-          "subtitle": "Default (Snappy)",
+          "title": "When using mobile data",
+          "subtitle": "No media",
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
-          "title": "Vibrate",
-          "subtitle": "Off",
+          "title": "When connected on Wi-Fi",
+          "subtitle": "No media",
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
-          "title": "Light",
-          "subtitle": "White",
+          "title": "When roaming",
+          "subtitle": "No media",
           "callback": () {},
         },
       ],
@@ -85,8 +85,12 @@ class _StorageState extends State<Storage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               for (final MapEntry<String, List<Map<String, dynamic>>> group in _notificationGroups.entries) ...<Widget>[
-                if (group.key.isNotEmpty) ...<Widget>[
-                  Text(group.key, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                if (group.key.isNotEmpty && group.key != "*") ...<Widget>[
+                  Text(group.key.split(" ?? ")[0], style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                  if (group.key.contains(" ?? ")) ...<Widget>[
+                    const SizedBox(height: 5),
+                    Text(group.key.split(" ?? ")[1], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                  ],
                   const SizedBox(height: 20),
                 ],
                 for (Map<String, dynamic> item in group.value) ...<Widget>[
