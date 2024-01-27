@@ -19,52 +19,35 @@ class _StorageState extends State<Storage> {
       "": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
-          "title": "Conversation tones",
-          "subtitle": "Play sounds for incoming and outgoing messages.",
+          "title": "Manage storage",
+          "subtitle": "188.3 MB",
+          "icon": FontAwesome.folder_solid,
           "callback": () {},
         },
       ],
-      "Messages": <Map<String, dynamic>>[
+      "*": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
-          "title": "Notification tone",
-          "subtitle": "Default (Snappy)",
+          "title": "Network usage",
+          "subtitle": "1.4 GB ∘ 2.6 GB received",
+          "icon": FontAwesome.folder_solid,
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 2,
+          "title": "Use less data for calls",
+          "subtitle": "",
+          "state": true,
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
-          "title": "Vibrate",
+          "title": "Proxy",
           "subtitle": "Off",
           "callback": () {},
         },
-        <String, dynamic>{
-          "type": 3,
-          "title": "Popup notification",
-          "subtitle": "Not available",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 1,
-          "title": "Light",
-          "subtitle": "Purple",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 2,
-          "title": "Use high priority notifications",
-          "subtitle": "Show previews of notifications at the top of the screen",
-          "state": true,
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 2,
-          "title": "Reaction Notifications",
-          "subtitle": "Show notifications for reactions to messages you send",
-          "state": true,
-          "callback": () {},
-        },
       ],
-      "Groups": <Map<String, dynamic>>[
+      "Media auto-download ?? Voice messages are always automatically downloaded": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
           "title": "Notification tone",
@@ -81,34 +64,6 @@ class _StorageState extends State<Storage> {
           "type": 1,
           "title": "Light",
           "subtitle": "White",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 2,
-          "title": "Use high priority notifications",
-          "subtitle": "Show previews of notifications at the top of the screen",
-          "state": true,
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 2,
-          "title": "Reaction Notifications",
-          "subtitle": "Show notifications for reactions to messages you send",
-          "state": true,
-          "callback": () {},
-        },
-      ],
-      "Others": <Map<String, dynamic>>[
-        <String, dynamic>{
-          "type": 1,
-          "title": "Ringtone",
-          "subtitle": "Default (Starry Night)",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 1,
-          "title": "Vibrate",
-          "subtitle": "Off",
           "callback": () {},
         },
       ],
@@ -143,10 +98,10 @@ class _StorageState extends State<Storage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            Text(item["title"], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: item["type"] == 3 ? white.withOpacity(.3) : white)),
+                            Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: white)),
                             if (item["subtitle"].isNotEmpty) ...<Widget>[
                               const SizedBox(height: 5),
-                              Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: item["type"] == 3 ? white.withOpacity(.3) : white.withOpacity(.6))),
+                              Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
                             ],
                           ],
                         ),
