@@ -16,58 +16,71 @@ class _ChatSettingsState extends State<ChatSettings> {
   @override
   void initState() {
     _privacyGroups = <String, List<Map<String, dynamic>>>{
-      "Who can see my personal info": <Map<String, dynamic>>[
+      "Display": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
-          "title": "Last seen and online",
-          "subtitle": "Everyone",
+          "title": "Theme",
+          "subtitle": "Dark",
+          "icon": FontAwesome.sun_solid,
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
-          "title": "Profile photo",
-          "subtitle": "Everyone",
+          "title": "Wallpaper",
+          "subtitle": "",
+          "icon": FontAwesome.image_portrait_solid,
           "callback": () {},
         },
+      ],
+      "Chat settings": <Map<String, dynamic>>[
         <String, dynamic>{
-          "type": 1,
-          "title": "About",
-          "subtitle": "Everyone",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 1,
-          "title": "Status",
-          "subtitle": "My contacts",
+          "type": 2,
+          "title": "Enter is send",
+          "subtitle": "Enter key will send your message",
+          "state": false,
           "callback": () {},
         },
         <String, dynamic>{
           "type": 2,
-          "title": "Read receipts",
-          "subtitle": "If turned off, you won't send or receive Read receipts. Read receipts are always sent for group chats.",
-          "radio_state": true,
+          "title": "Media visibility",
+          "subtitle": "Show newly downloaded media in your device's gallery",
+          "state": true,
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 2,
+          "title": "Instant video messages",
+          "subtitle": "Lets you tap to switch between using voice and video messages",
+          "state": false,
+          "callback": () {},
+        },
+        <String, dynamic>{
+          "type": 1,
+          "title": "Font size",
+          "subtitle": "Small",
+          "icon": null,
           "callback": () {},
         },
       ],
-      "Disappearing messages": <Map<String, dynamic>>[
+      "Archived chats": <Map<String, dynamic>>[
         <String, dynamic>{
-          "type": 3,
-          "title": "Default message timer",
-          "subtitle": "Start new chats with disappearing messages set to your timer.",
-          "state": "Off",
+          "type": 2,
+          "title": "Keep chats archived",
+          "subtitle": "Archived chats will remain archived when you receive a new message",
+          "state": true,
           "callback": () {},
         },
       ],
       "Others": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
-          "title": "Groups",
-          "subtitle": "Everyone",
+          "title": "Chat backup",
+          "subtitle": "",
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
-          "title": "Live location",
+          "title": "Transfer chats",
           "subtitle": "None",
           "callback": () {},
         },
@@ -75,24 +88,6 @@ class _ChatSettingsState extends State<ChatSettings> {
           "type": 1,
           "title": "Calls",
           "subtitle": "Silence unknown callers",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 1,
-          "title": "Blocked contacts",
-          "subtitle": "None",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 1,
-          "title": "Fingerprint lock",
-          "subtitle": "Disabled",
-          "callback": () {},
-        },
-        <String, dynamic>{
-          "type": 1,
-          "title": "Advanced",
-          "subtitle": "Protect IP address in calls",
           "callback": () {},
         },
       ],
