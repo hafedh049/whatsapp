@@ -11,11 +11,11 @@ class ChatSettings extends StatefulWidget {
 }
 
 class _ChatSettingsState extends State<ChatSettings> {
-  late final Map<String, List<Map<String, dynamic>>> _privacyGroups;
+  late final Map<String, List<Map<String, dynamic>>> _chatsGroups;
 
   @override
   void initState() {
-    _privacyGroups = <String, List<Map<String, dynamic>>>{
+    _chatsGroups = <String, List<Map<String, dynamic>>>{
       "Display": <Map<String, dynamic>>[
         <String, dynamic>{
           "type": 1,
@@ -111,7 +111,7 @@ class _ChatSettingsState extends State<ChatSettings> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              for (final MapEntry<String, List<Map<String, dynamic>>> group in _privacyGroups.entries) ...<Widget>[
+              for (final MapEntry<String, List<Map<String, dynamic>>> group in _chatsGroups.entries) ...<Widget>[
                 Text(group.key, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
                 const SizedBox(height: 20),
                 for (Map<String, dynamic> item in group.value) ...<Widget>[
