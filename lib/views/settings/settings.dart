@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/views/settings/account/account.dart';
+import 'package:whatsapp/views/settings/avatar/avatar.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
 
 import '../../utils/shared.dart';
@@ -34,7 +35,7 @@ class _SettingsState extends State<Settings> {
         "icon": FontAwesome.face_grimace_solid,
         "title": "Avatar",
         "subtitle": "Create, edit, profile photo",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Avatar())),
       },
       <String, dynamic>{
         "icon": FontAwesome.message_solid,
