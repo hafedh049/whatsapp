@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/views/settings/account/account.dart';
 import 'package:whatsapp/views/settings/avatar/avatar.dart';
 import 'package:whatsapp/views/settings/chats/chats_settings.dart';
+import 'package:whatsapp/views/settings/languages/languages.dart';
 import 'package:whatsapp/views/settings/notifications/notifications.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
 import 'package:whatsapp/views/settings/storage/storage.dart';
@@ -62,7 +63,7 @@ class _SettingsState extends State<Settings> {
         "icon": Bootstrap.globe,
         "title": "App language",
         "subtitle": "English (device's language)",
-        "callback": () {},
+        "callback": () => showModalBottomSheet(showDragHandle: true, context: context, builder: (BuildContext context) => const Languages()),
       },
       <String, dynamic>{
         "icon": FontAwesome.circle_question_solid,

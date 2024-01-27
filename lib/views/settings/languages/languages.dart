@@ -16,10 +16,11 @@ class Languages extends StatefulWidget {
 
 class _LanguagesState extends State<Languages> {
   String _language = "English";
-  Future<List<Map<String, String>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/languages.json")).cast<Map<String, String>>();
+  Future<List<Map<String, dynamic>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/languages.json")).cast<Map<String, dynamic>>();
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.all(24),
       height: MediaQuery.sizeOf(context).height * .5,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,37 +41,41 @@ class _LanguagesState extends State<Languages> {
           const SizedBox(height: 20),
           Divider(thickness: .3, height: .3, color: white.withOpacity(.6)),
           const SizedBox(height: 20),
-          FutureBuilder<List<Map<String, String>>>(
-            future: _load(),
-            builder: (BuildContext context, AsyncSnapshot<List<Map<String, String>>> snapshot) {
-              if (snapshot.hasData) {
-                final List<Map<String, String>> data = snapshot.data!;
-                return StatefulBuilder(
-                  builder: (BuildContext context, void Function(void Function()) _) {
-                    return ListView.separated(
-                      itemBuilder: (BuildContext context, int index) => Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 40,
-                            child: Radio<String>(
-                              value: data[index]["name"]!,
-                              groupValue: _language,
-                              onChanged: (String? value) => _(() => _language = value!),
+          Expanded(
+            child: FutureBuilder<List<Map<String, dynamic>>>(
+              future: _load(),
+              builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                if (snapshot.hasData) {
+                  final List<Map<String, dynamic>> data = snapshot.data!;
+                  return StatefulBuilder(
+                    builder: (BuildContext context, void Function(void Function()) _) {
+                      return ListView.separated(
+                        itemBuilder: (BuildContext context, int index) => Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 40,
+                              child: Radio<String>(
+                                activeColor: green,
+                                value: data[index]["name"]!.split(";").first,
+                                groupValue: _language,
+                                onChanged: (String? value) => _(() => _language = value!),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                      itemCount: 30,
-                    );
-                  },
-                );
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Wait();
-              } else {
-                return Wrong(error: snapshot.error.toString());
-              }
-            },
+                            Expanded(child: Text(data[index]["name"]!.split(";").first, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: white))),
+                          ],
+                        ),
+                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                        itemCount: data.length,
+                      );
+                    },
+                  );
+                } else if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Wait();
+                } else {
+                  return Wrong(error: snapshot.error.toString());
+                }
+              },
+            ),
           ),
         ],
       ),
