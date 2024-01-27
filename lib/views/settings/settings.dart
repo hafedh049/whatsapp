@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/views/settings/account/account.dart';
 import 'package:whatsapp/views/settings/avatar/avatar.dart';
 import 'package:whatsapp/views/settings/chats/chats_settings.dart';
+import 'package:whatsapp/views/settings/help/help.dart';
 import 'package:whatsapp/views/settings/languages/languages.dart';
 import 'package:whatsapp/views/settings/notifications/notifications.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
@@ -69,7 +70,7 @@ class _SettingsState extends State<Settings> {
         "icon": FontAwesome.circle_question_solid,
         "title": "Help",
         "subtitle": "Help center, contact us, privacy policy",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Help())),
       },
       <String, dynamic>{
         "icon": Bootstrap.people_fill,

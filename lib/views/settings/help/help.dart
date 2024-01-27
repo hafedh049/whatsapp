@@ -55,8 +55,26 @@ class _HelpState extends State<Help> {
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[],
+          children: <Widget>[
+            for (final Map<String, dynamic> item in _items) ...<Widget>[
+              Row(
+                children: <Widget>[
+                  SizedBox(width: 40, child: Icon(item["icon"], size: 20, color: white.withOpacity(.6))),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(item["title"], style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white)),
+                     if()...<Widget>[ const SizedBox(height: 2),
+                      Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                  ],
+                       ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
+          ],
         ),
       ),
     );
