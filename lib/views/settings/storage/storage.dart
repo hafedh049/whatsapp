@@ -3,14 +3,14 @@ import 'package:icons_plus/icons_plus.dart';
 
 import '../../../utils/shared.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({super.key});
+class Storage extends StatefulWidget {
+  const Storage({super.key});
 
   @override
-  State<Notifications> createState() => _NotificationsState();
+  State<Storage> createState() => _StorageState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _StorageState extends State<Storage> {
   late final Map<String, List<Map<String, dynamic>>> _notificationGroups;
 
   @override
@@ -137,6 +137,7 @@ class _NotificationsState extends State<Notifications> {
                 for (Map<String, dynamic> item in group.value) ...<Widget>[
                   Row(
                     children: <Widget>[
+                      SizedBox(width: 40, child: item["icon"] != null ? Icon(item["icon"], size: 20, color: white.withOpacity(.6)) : null),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

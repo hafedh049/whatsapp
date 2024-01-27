@@ -3,6 +3,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/views/settings/account/account.dart';
 import 'package:whatsapp/views/settings/avatar/avatar.dart';
 import 'package:whatsapp/views/settings/chats/chats_settings.dart';
+import 'package:whatsapp/views/settings/notifications/notifications.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
 
 import '../../utils/shared.dart';
@@ -48,7 +49,7 @@ class _SettingsState extends State<Settings> {
         "icon": Bootstrap.bell_fill,
         "title": "Notifications",
         "subtitle": "Message, group & call tones",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const Notifications())),
       },
       <String, dynamic>{
         "icon": FontAwesome.bars_progress_solid,
