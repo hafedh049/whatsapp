@@ -103,7 +103,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   onTap: _floats[_float].first,
                   child: Container(
                     padding: EdgeInsets.all(icon == _floats[_float][1] ? 12 : 8),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: icon == _floats[_float][1] ? green : blue),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: icon == _floats[_float][1] ? green : blue),
                     child: Icon(icon, size: icon == _floats[_float][1] ? 25 : 15, color: icon == _floats[_float][1] ? black : white),
                   ),
                 ),
