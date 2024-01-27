@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/views/settings/account/account.dart';
 import 'package:whatsapp/views/settings/avatar/avatar.dart';
+import 'package:whatsapp/views/settings/chats/chats_settings.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
 
 import '../../utils/shared.dart';
@@ -41,7 +42,7 @@ class _SettingsState extends State<Settings> {
         "icon": FontAwesome.message_solid,
         "title": "Chats",
         "subtitle": "Theme, wallpapers, chat history",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const ChatSettings())),
       },
       <String, dynamic>{
         "icon": Bootstrap.bell_fill,

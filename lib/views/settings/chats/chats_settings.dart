@@ -76,18 +76,21 @@ class _ChatSettingsState extends State<ChatSettings> {
           "type": 1,
           "title": "Chat backup",
           "subtitle": "",
+          "icon": Bootstrap.cloud_arrow_up_fill,
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
           "title": "Transfer chats",
-          "subtitle": "None",
+          "subtitle": "",
+          "icon": FontAwesome.door_open_solid,
           "callback": () {},
         },
         <String, dynamic>{
           "type": 1,
-          "title": "Calls",
-          "subtitle": "Silence unknown callers",
+          "title": "Chat history",
+          "subtitle": "",
+          "icon": FontAwesome.clock_rotate_left_solid,
           "callback": () {},
         },
       ],
@@ -106,7 +109,49 @@ class _ChatSettingsState extends State<ChatSettings> {
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[],
+          children: <Widget>[
+            for (final MapEntry<String, List<Map<String, dynamic>>> group in _privacyGroups.entries) ...<Widget>[
+              Text(group.key, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+              const SizedBox(height: 20),
+              for (Map<String, dynamic> item in group.value) ...<Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: white)),
+                          const SizedBox(height: 5),
+                          Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                        ],
+                      ),
+                    ),
+                    if (item["type"] != 1) const SizedBox(width: 10),
+                    item["type"] == 3
+                        ? Text(item["state"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6)))
+                        : item["type"] == 2
+                            ? StatefulBuilder(
+                                builder: (BuildContext context, void Function(void Function()) _) {
+                                  return Switch(
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    value: item["radio_state"],
+                                    activeColor: green,
+                                    activeTrackColor: white.withOpacity(.1),
+                                    inactiveThumbColor: white.withOpacity(.6),
+                                    onChanged: (bool value) => _(() => item["radio_state"] = value),
+                                  );
+                                },
+                              )
+                            : const SizedBox(),
+                  ],
+                ),
+                const SizedBox(height: 20),
+              ],
+              Divider(height: .5, thickness: .5, color: white.withOpacity(.6)),
+              const SizedBox(height: 20),
+            ],
+          ],
         ),
       ),
     );
