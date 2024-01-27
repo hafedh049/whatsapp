@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whatsapp/utils/shared.dart';
+import 'package:whatsapp/views/miscellaneous/wait.dart';
+import 'package:whatsapp/views/miscellaneous/wrong.dart';
 
 class Languages extends StatefulWidget {
   const Languages({super.key});
@@ -14,7 +16,7 @@ class Languages extends StatefulWidget {
 
 class _LanguagesState extends State<Languages> {
   String _language = "English";
-  Future<List<Map<String,String>>> _load()async =>json.decode(await rootBundle.loadString("assets/jsons/languages.json")).cast<Map<String,String>>();
+  Future<List<Map<String, String>>> _load() async => json.decode(await rootBundle.loadString("assets/jsons/languages.json")).cast<Map<String, String>>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,26 +40,37 @@ class _LanguagesState extends State<Languages> {
           const SizedBox(height: 20),
           Divider(thickness: .3, height: .3, color: white.withOpacity(.6)),
           const SizedBox(height: 20),
-          FutureBuilder<List<Map<String,String>>>(
+          FutureBuilder<List<Map<String, String>>>(
             future: _load(),
-            builder: (BuildContext context,AsyncSnapshot<List<Map<String,String>>> snapshot) {
-             if(snapshot.hasData){
-               return StatefulBuilder(
-
-                builder: (BuildContext context, void Function(void Function()) _) {
-                  return ListView.separated(
-                    itemBuilder: (BuildContext context, int index) => Row(
-                      children: <Widget>[
-                        SizedBox(width: 40, child: Radio<String>(value: value, groupValue: _language, onChanged: (String? value) => ,),),
-                      ],
-                    ),
-                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                    itemCount: 30,
-                  );
-                }
-              );
-             }
-            }
+            builder: (BuildContext context, AsyncSnapshot<List<Map<String, String>>> snapshot) {
+              if (snapshot.hasData) {
+                final List<Map<String, String>> data = snapshot.data!;
+                return StatefulBuilder(
+                  builder: (BuildContext context, void Function(void Function()) _) {
+                    return ListView.separated(
+                      itemBuilder: (BuildContext context, int index) => Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 40,
+                            child: Radio<String>(
+                              value: data[index]["name"]!,
+                              groupValue: _language,
+                              onChanged: (String? value) => _(() => _language = value!),
+                            ),
+                          ),
+                        ],
+                      ),
+                      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                      itemCount: 30,
+                    );
+                  },
+                );
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Wait();
+              } else {
+                return Wrong(error: snapshot.error.toString());
+              }
+            },
           ),
         ],
       ),
