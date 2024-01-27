@@ -57,20 +57,25 @@ class _HelpState extends State<Help> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             for (final Map<String, dynamic> item in _items) ...<Widget>[
-              Row(
-                children: <Widget>[
-                  SizedBox(width: 40, child: Icon(item["icon"], size: 20, color: white.withOpacity(.6))),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text(item["title"], style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white)),
-                     if()...<Widget>[ const SizedBox(height: 2),
-                      Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+              GestureDetector(
+                onTap: item["callback"],
+                child: Row(
+                  children: <Widget>[
+                    Icon(item["icon"], size: 25, color: white.withOpacity(.6)),
+                    const SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                        if (item["subtitle"].isNotEmpty) ...<Widget>[
+                          const SizedBox(height: 2),
+                          Text(item["subtitle"], style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                        ],
+                      ],
+                    ),
                   ],
-                       ],
-                  ),
-                ],
+                ),
               ),
               const SizedBox(height: 20),
             ],
