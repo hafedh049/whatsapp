@@ -4,6 +4,7 @@ import 'package:whatsapp/views/settings/account/account.dart';
 import 'package:whatsapp/views/settings/avatar/avatar.dart';
 import 'package:whatsapp/views/settings/chats/chats_settings.dart';
 import 'package:whatsapp/views/settings/help/help.dart';
+import 'package:whatsapp/views/settings/invite_friend/invite_friend.dart';
 import 'package:whatsapp/views/settings/languages/languages.dart';
 import 'package:whatsapp/views/settings/notifications/notifications.dart';
 import 'package:whatsapp/views/settings/privacy/privacy.dart';
@@ -76,7 +77,7 @@ class _SettingsState extends State<Settings> {
         "icon": Bootstrap.people_fill,
         "title": "Invite a friend",
         "subtitle": "",
-        "callback": () {},
+        "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const InviteFriend())),
       },
     ];
     super.initState();
