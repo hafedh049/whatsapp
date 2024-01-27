@@ -66,7 +66,7 @@ class _InviteFriendState extends State<InviteFriend> {
                               children: <Widget>[
                                 Text(_items[index]["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
                                 const SizedBox(height: 5),
-                                Text(_items[index]["subtitle"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                                Text(_items[index]["subtitle"], style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
                               ],
                             ),
                           ),
