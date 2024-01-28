@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_circular_slider/multi_circular_slider.dart';
 import 'package:whatsapp/views/miscellaneous/wrong.dart';
 
 import '../../../utils/shared.dart';
@@ -53,7 +53,6 @@ class _ManageStorageState extends State<ManageStorage> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               const Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Text("188", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: green)),
@@ -71,7 +70,6 @@ class _ManageStorageState extends State<ManageStorage> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Text("46", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
@@ -86,23 +84,32 @@ class _ManageStorageState extends State<ManageStorage> {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      MultiCircularSlider(
-                        size: MediaQuery.of(context).size.width - 24 * 2,
-                        progressBarType: MultiCircularSliderType.circular,
-                        values: const <double>[.2, .8],
-                        colors: const <Color>[Colors.yellow, green],
-                        showTotalPercentage: true,
-                        label: 'Usage',
-                        animationDuration: 500.ms,
-                        animationCurve: Curves.easeIn,
-                        innerIcon: const Icon(Icons.integration_instructions),
-                        innerWidget: Text('96%'),
-                        trackColor: white.withOpacity(.3),
-                        progressBarWidth: 16,
-                        trackWidth: 16,
-                        labelTextStyle: TextStyle(fontSize: 10, color: white.withOpacity(.6), fontWeight: FontWeight.w500),
-                        percentageTextStyle: TextStyle(),
-                      )
+                      Center(
+                        child: FAProgressBar(
+                          animatedDuration: 500.ms,
+                          backgroundColor: white.withOpacity(.3),
+                          borderRadius: BorderRadius.circular(25),
+                          maxValue: 100,
+                          progressColor: Colors.amberAccent,
+                          size: 16,
+                          currentValue: 20,
+                          displayText: null,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const CircleAvatar(radius: 5, backgroundColor: green),
+                          const SizedBox(width: 5),
+                          Text("WhatsApp (188 MB)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                          const SizedBox(width: 30),
+                          const CircleAvatar(radius: 5, backgroundColor: Colors.amberAccent),
+                          const SizedBox(width: 5),
+                          Text("Other apps (11 GB)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                        ],
+                      ),
                     ],
                   );
                 },
