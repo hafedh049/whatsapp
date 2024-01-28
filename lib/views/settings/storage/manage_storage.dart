@@ -46,8 +46,43 @@ class _ManageStorageState extends State<ManageStorage> {
                         const SizedBox(height: 10),
                       ],
                       Row(
-                        children: <Widget>[],
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text("188", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: green)),
+                                  const SizedBox(width: 10),
+                                  Text("MB", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: green)),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Text("Used", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text("46", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                                  const SizedBox(width: 10),
+                                  Text("GB", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Text("Free", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                            ],
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 20),
                     ],
                   );
                 },
