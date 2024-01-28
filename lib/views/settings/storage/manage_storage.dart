@@ -60,7 +60,6 @@ class _ManageStorageState extends State<ManageStorage> {
                                   Text("MB", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: green)),
                                 ],
                               ),
-                              const SizedBox(height: 5),
                               Text("Used", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
                             ],
                           ),
@@ -77,8 +76,7 @@ class _ManageStorageState extends State<ManageStorage> {
                                   Text("GB", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
                                 ],
                               ),
-                              const SizedBox(height: 5),
-                              Text("Free", style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                              Text("Free", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
                             ],
                           ),
                         ],
@@ -87,7 +85,7 @@ class _ManageStorageState extends State<ManageStorage> {
                       Center(
                         child: FAProgressBar(
                           animatedDuration: 500.ms,
-                          backgroundColor: white.withOpacity(.3),
+                          backgroundColor: white.withOpacity(.1),
                           borderRadius: BorderRadius.circular(25),
                           maxValue: 100,
                           progressColor: Colors.amberAccent,
@@ -97,22 +95,37 @@ class _ManageStorageState extends State<ManageStorage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const CircleAvatar(radius: 5, backgroundColor: green),
-                          const SizedBox(width: 5),
-                          Text("WhatsApp (188 MB)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
-                          const SizedBox(width: 30),
-                          const CircleAvatar(radius: 5, backgroundColor: Colors.amberAccent),
-                          const SizedBox(width: 5),
-                          Text("Other apps (11 GB)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
-                        ],
+                      Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const CircleAvatar(radius: 5, backgroundColor: green),
+                            const SizedBox(width: 5),
+                            Text("WhatsApp (188 MB)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                            const SizedBox(width: 30),
+                            const CircleAvatar(radius: 5, backgroundColor: Colors.amberAccent),
+                            const SizedBox(width: 5),
+                            Text("Other apps (11 GB)", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                          ],
+                        ),
                       ),
                     ],
                   );
                 },
+              ),
+              const SizedBox(height: 30),
+              Text("Tools to save space", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+              Row(
+                children: <Widget>[
+                  Icon(FontAwesome.clock_rotate_left_solid, size: 25, color: white.withOpacity(.6)),
+                  const SizedBox(width: 30),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[],
+                  ),
+                ],
               ),
             ],
           ),
