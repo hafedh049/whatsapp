@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:whatsapp/views/settings/storage/manage_storage.dart';
 
 import '../../../utils/shared.dart';
 
@@ -22,7 +23,7 @@ class _StorageState extends State<Storage> {
           "title": "Manage storage",
           "subtitle": "188.3 MB",
           "icon": FontAwesome.folder_solid,
-          "callback": () {},
+          "callback": () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const ManageStorage())),
         },
       ],
       "*": <Map<String, dynamic>>[
@@ -94,38 +95,41 @@ class _StorageState extends State<Storage> {
                   const SizedBox(height: 20),
                 ],
                 for (Map<String, dynamic> item in group.value) ...<Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: 40, child: item["icon"] != null ? Icon(item["icon"], size: 20, color: white.withOpacity(.6)) : null),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: white)),
-                            if (item["subtitle"].isNotEmpty) ...<Widget>[
-                              const SizedBox(height: 5),
-                              Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                  GestureDetector(
+                    onTap: item["callback"],
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 40, child: item["icon"] != null ? Icon(item["icon"], size: 20, color: white.withOpacity(.6)) : null),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(item["title"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: white)),
+                              if (item["subtitle"].isNotEmpty) ...<Widget>[
+                                const SizedBox(height: 5),
+                                Text(item["subtitle"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: white.withOpacity(.6))),
+                              ],
                             ],
-                          ],
+                          ),
                         ),
-                      ),
-                      if (item["type"] != 1) const SizedBox(width: 10),
-                      item["type"] == 2
-                          ? StatefulBuilder(
-                              builder: (BuildContext context, void Function(void Function()) _) {
-                                return Switch(
-                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  value: item["state"],
-                                  activeColor: green,
-                                  activeTrackColor: white.withOpacity(.1),
-                                  inactiveThumbColor: white.withOpacity(.6),
-                                  onChanged: (bool value) => _(() => item["state"] = value),
-                                );
-                              },
-                            )
-                          : const SizedBox(),
-                    ],
+                        if (item["type"] != 1) const SizedBox(width: 10),
+                        item["type"] == 2
+                            ? StatefulBuilder(
+                                builder: (BuildContext context, void Function(void Function()) _) {
+                                  return Switch(
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    value: item["state"],
+                                    activeColor: green,
+                                    activeTrackColor: white.withOpacity(.1),
+                                    inactiveThumbColor: white.withOpacity(.6),
+                                    onChanged: (bool value) => _(() => item["state"] = value),
+                                  );
+                                },
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 20),
                 ],
