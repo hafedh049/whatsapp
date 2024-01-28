@@ -116,17 +116,49 @@ class _ManageStorageState extends State<ManageStorage> {
               ),
               const SizedBox(height: 30),
               Text("Tools to save space", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+              const SizedBox(height: 20),
               Row(
                 children: <Widget>[
-                  Icon(FontAwesome.clock_rotate_left_solid, size: 25, color: white.withOpacity(.6)),
+                  Icon(FontAwesome.clock_rotate_left_solid, size: 20, color: white.withOpacity(.6)),
                   const SizedBox(width: 30),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Text("Turn on disappearing messages", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                        const SizedBox(height: 5),
+                        Text("Stay in control of future storage needs and build privacy into you chats.", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                      ],
+                    ),
                   ),
                 ],
               ),
+              const SizedBox(height: 30),
+              Row(
+                children: <Widget>[
+                  Text("Chats and channels", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                  const Spacer(),
+                  IconButton(onPressed: () {}, icon: Icon(FontAwesome.magnifying_glass_solid, size: 15, color: white.withOpacity(.6))),
+                ],
+              ),
+              const SizedBox(height: 20),
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) => const Row(
+                  children: <Widget>[
+                    CircleAvatar(radius: 20, backgroundImage: AssetImage("assets/images/me.jpg")),
+                    SizedBox(width: 20),
+                    Expanded(child: Text("Turn on disappearing messages", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: white), overflow: TextOverflow.ellipsis, maxLines: 1)),
+                    SizedBox(width: 20),
+                    Text("Stay in control of future storage needs and build privacy into you chats.", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: white.withOpacity(.6))),
+                  ],
+                ),
+                separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                itemCount: 8,
+              ),
+              const SizedBox(height: 30),
+              Text("8 channels not displayed because they're taking up a small amount of storage.", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: white.withOpacity(.6)), textAlign: TextAlign.center),
             ],
           ),
         ),
